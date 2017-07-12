@@ -19,5 +19,6 @@ namespace LemonadeStand
             Console.WriteLine("Enter {0}'s name: ", name);
             name = Console.ReadLine();
         }
+
     }
 }

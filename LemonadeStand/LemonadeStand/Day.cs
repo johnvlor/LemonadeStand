@@ -8,5 +8,23 @@ namespace LemonadeStand
 {
     class Day
     {
+        public int day;
+
+        public Day()
+        {
+            day = 1;
+        }
+
+        public void GetDay()
+        {
+            Console.WriteLine("Day {0}",
+                day);
+        }
+
+        public int CheckDay()
+        {
+            return day += 1;
+        }
+
     }
 }
