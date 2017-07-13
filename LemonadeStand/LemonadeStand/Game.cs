@@ -46,7 +46,6 @@ namespace LemonadeStand
             
             while (playerInput != "done")
             {
-                Console.WriteLine("input " + playerInput);
                 Console.WriteLine("\nWhat would you like to buy? Input 'done' when finished.");
                 playerInput = Console.ReadLine();
 

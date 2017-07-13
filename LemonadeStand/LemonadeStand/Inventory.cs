@@ -24,12 +24,11 @@ namespace LemonadeStand
 
         public void CheckInventory()
         {
-            Console.WriteLine("Current Inventory");
+            Console.WriteLine("\nCurrent Inventory");
             cup.DisplayCups();
             lemon.DisplayLemons();
             sugar.DisplaySugar();
-            iceCubes.DisplayIceCubes();
-            
+            iceCubes.DisplayIceCubes();           
         }
 
     }
