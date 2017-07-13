@@ -9,11 +9,12 @@ namespace LemonadeStand
     class Player
     {
         protected string name;
-        protected decimal money;
+        public decimal money;
+        public Inventory inventory = new Inventory();
 
         public Player()
         {
-            money = 20.00m;
+            SetMoney();
         }
 
         public string GetName()
@@ -30,6 +31,12 @@ namespace LemonadeStand
         {
             Console.WriteLine("Money: ${0}", GetMoney());
         }
+
+        public void SetMoney()
+        {
+            money = 20.00m;
+        }
+
 
     }
 }

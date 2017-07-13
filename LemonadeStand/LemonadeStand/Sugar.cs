@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class UserInterface
+    class Sugar
     {
-
-        public UserInterface()
-        {
-
-        }
-
     }
 }

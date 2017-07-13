@@ -24,15 +24,20 @@ namespace LemonadeStand
                 "Raining & Cold",
                 "Thunderstorm",
             };
-
             forecast = 0;
         }
 
-        public void GetWeather()
+        public void DisplayWeather()
+        {
+            GetWeatherForecast();
+            GetTemperature();
+        }
+
+        public void GetWeatherForecast()
         {
             random = new Random();
             forecast = random.Next(6);
-            Console.WriteLine("Weather Forecast: {0}", weatherForecast[forecast]);
+            Console.WriteLine("\nWeather Forecast: {0}", weatherForecast[forecast]);
         }
 
         public void GetTemperature()
@@ -68,8 +73,5 @@ namespace LemonadeStand
             }
             Console.WriteLine("Temperature: {0} degrees", temperature);
         }
-
-
-
     }
 }

@@ -8,5 +8,22 @@ namespace LemonadeStand
 {
     class Inventory
     {
+        public Cup cup;
+        public Lemon lemon;
+
+        public Inventory()
+        {
+            cup = new Cup();
+            lemon = new Lemon();
+
+        }
+
+        public void CheckInventory()
+        {
+            Console.WriteLine("Current Inventory");
+            cup.DisplayCups();
+            lemon.DisplayLemons();
+        }
+
     }
 }
