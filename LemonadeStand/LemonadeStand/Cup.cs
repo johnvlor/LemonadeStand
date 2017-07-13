@@ -8,21 +8,17 @@ namespace LemonadeStand
 {
     class Cup
     {
-        public int cups;
+        public List<Cup> cups;
 
         public Cup()
         {
-            cups = 0;
-        }
-
-        public int GetCups()
-        {
-            return cups;
+            cups = new List<Cup>();
         }
 
         public void DisplayCups()
         {
-            Console.WriteLine("Cups: {0}", GetCups());
+            Console.WriteLine("Cups: {0}", cups.Count);
         }
+
     }
 }

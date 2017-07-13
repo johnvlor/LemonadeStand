@@ -27,10 +27,10 @@ namespace LemonadeStand
             day.StartDay();
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
+
             BuyInventory(playerOne);
-            AdditionalPurchase();
-            playerOne.DisplayMoney();
-            playerOne.inventory.CheckInventory();
+
+
 
         }
 
@@ -41,23 +41,39 @@ namespace LemonadeStand
 
         public void BuyInventory(Player playerOne)
         {
-            string playerInput;
-            Console.WriteLine("\nWhat would you like to buy?");
-            playerInput = Console.ReadLine();
+            string playerInput = "";
+            
+            while (playerInput != "done")
+            {
+                Console.WriteLine("input " + playerInput);
+                Console.WriteLine("\nWhat would you like to buy? Input 'done' when finished.");
+                playerInput = Console.ReadLine();
 
                 switch (playerInput)
                 {
                     case "cups":
                         store.DisplayPriceOfCups();
                         store.BuyCups(playerOne);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
                         break;
                     case "lemons":
                         store.DisplayPriceOfLemons();
                         store.BuyLemons(playerOne);
-                    break;
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
+                        break;
                     case "sugar":
+                        store.DisplayPriceOfSugar();
+                        store.BuySugar(playerOne);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
                         break;
                     case "ice cubes":
+                        store.DisplayPriceOfIceCubes();
+                        store.BuyIceCubes(playerOne);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
                         break;
                     case "done":
                         break;
@@ -65,20 +81,6 @@ namespace LemonadeStand
                         BuyInventory(playerOne);
                         break;
                 }
-        }
-
-        public void AdditionalPurchase()
-        {
-            string answer;
-            Console.WriteLine("Are you done?");
-            answer = Console.ReadLine();
-            if (answer == "no")
-            {
-                BuyInventory(playerOne);
-            }
-            else
-            {
-                Console.WriteLine("Thank you");
             }
         }
 

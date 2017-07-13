@@ -8,5 +8,16 @@ namespace LemonadeStand
 {
     class IceCube
     {
+        public List<IceCube> iceCubes;
+
+        public IceCube()
+        {
+            iceCubes = new List<IceCube>();
+        }
+
+        public void DisplayIceCubes()
+        {
+            Console.WriteLine("Ice cubes: {0}", iceCubes.Count);
+        }
     }
 }

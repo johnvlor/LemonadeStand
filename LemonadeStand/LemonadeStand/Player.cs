@@ -29,6 +29,7 @@ namespace LemonadeStand
 
         public void DisplayMoney()
         {
+            Console.WriteLine();
             Console.WriteLine("Money: ${0}", GetMoney());
         }
 

@@ -8,5 +8,16 @@ namespace LemonadeStand
 {
     class Sugar
     {
+        public List<Sugar> sugar;
+
+        public Sugar()
+        {
+            sugar = new List<Sugar>();
+        }
+
+        public void DisplaySugar()
+        {
+            Console.WriteLine("Sugar: {0}", sugar.Count);
+        }
     }
 }

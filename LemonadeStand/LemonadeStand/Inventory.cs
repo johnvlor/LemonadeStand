@@ -10,11 +10,15 @@ namespace LemonadeStand
     {
         public Cup cup;
         public Lemon lemon;
+        public Sugar sugar;
+        public IceCube iceCubes;
 
         public Inventory()
         {
             cup = new Cup();
             lemon = new Lemon();
+            sugar = new Sugar();
+            iceCubes = new IceCube();
 
         }
 
@@ -23,6 +27,9 @@ namespace LemonadeStand
             Console.WriteLine("Current Inventory");
             cup.DisplayCups();
             lemon.DisplayLemons();
+            sugar.DisplaySugar();
+            iceCubes.DisplayIceCubes();
+            
         }
 
     }

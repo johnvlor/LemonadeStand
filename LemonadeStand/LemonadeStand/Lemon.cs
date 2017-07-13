@@ -8,21 +8,16 @@ namespace LemonadeStand
 {
     class Lemon
     {
-        public int lemons;
+        public List<Lemon> lemons;
 
         public Lemon()
         {
-            lemons = 0;
-        }
-
-        public int GetLemons()
-        {
-            return lemons;
+            lemons = new List<Lemon>();
         }
 
         public void DisplayLemons()
         {
-            Console.WriteLine("Lemons: {0}", GetLemons());
+            Console.WriteLine("Lemons: {0}", lemons.Count);
         }
 
     }
