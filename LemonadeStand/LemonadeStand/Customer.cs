@@ -8,9 +8,16 @@ namespace LemonadeStand
 {
     class Customer
     {
+        public List<Customer> customer;
+
         public Customer()
         {
+            customer = new List<Customer>();
+        }
 
+        public void DisplayCustomers()
+        {
+            Console.WriteLine("Customers: {0}", customer.Count);
         }
     }
 }

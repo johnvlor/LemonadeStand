@@ -12,6 +12,7 @@ namespace LemonadeStand
         Rule rules;
         Day day;
         public Store store = new Store();
+        Random random;
 
         public Game()
         {
@@ -24,7 +25,8 @@ namespace LemonadeStand
         {
             rules.GetRules();
             GetPlayer();
-            day.StartDay();
+            day.GetTodaysWeather(random);
+            day.StartDay(random);
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
 
@@ -33,6 +35,8 @@ namespace LemonadeStand
             playerOne.recipe.MakeLemonade(playerOne);
             playerOne.inventory.CheckInventory();
             playerOne.lemonade.DisplayCupsOfLemonade();
+
+            playerOne.lemonade.SetLemonadePrice();
         }
 
         public void GetPlayer()

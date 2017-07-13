@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     class Weather
     {
-        Random random;
         int forecast;
         int temperature;
         List<string> weatherForecast;
@@ -27,20 +26,20 @@ namespace LemonadeStand
             forecast = 0;
         }
 
-        public void DisplayWeather()
+        public void DisplayWeather(Random random)
         {
-            GetWeatherForecast();
-            GetTemperature();
+            GetWeatherForecast(random);
+            GetTemperature(random);
         }
 
-        public void GetWeatherForecast()
+        public void GetWeatherForecast(Random random)
         {
             random = new Random();
             forecast = random.Next(6);
             Console.WriteLine("\nWeather Forecast: {0}", weatherForecast[forecast]);
         }
 
-        public void GetTemperature()
+        public void GetTemperature(Random random)
         {
             switch(forecast)
             {

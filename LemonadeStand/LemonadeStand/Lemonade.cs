@@ -22,6 +22,13 @@ namespace LemonadeStand
             return lemonadePrice;
         }
 
+        public void SetLemonadePrice()
+        {
+            Console.Write("Set your price per cup of lemonade: $");
+            lemonadePrice = Decimal.Parse(Console.ReadLine());
+            Console.WriteLine(lemonadePrice);
+        }
+
         public void DisplayCupsOfLemonade()
         {
             Console.WriteLine("Cups of Lemonade made: {0}", cupsOfLemonade.Count);
