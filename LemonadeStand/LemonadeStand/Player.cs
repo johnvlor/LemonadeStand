@@ -11,6 +11,8 @@ namespace LemonadeStand
         protected string name;
         public decimal money;
         public Inventory inventory = new Inventory();
+        public Recipe recipe = new Recipe();
+        public Lemonade lemonade = new Lemonade();
 
         public Player()
         {

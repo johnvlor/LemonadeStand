@@ -30,8 +30,9 @@ namespace LemonadeStand
 
             BuyInventory(playerOne);
 
-
-
+            playerOne.recipe.MakeLemonade(playerOne);
+            playerOne.inventory.CheckInventory();
+            playerOne.lemonade.DisplayCupsOfLemonade();
         }
 
         public void GetPlayer()
