@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class UserInterface
+    public static class UserInterface
     {
 
-        public UserInterface()
+        public static void DisplayProfit(Player playerOne)
         {
-
+            Console.WriteLine("Profit: ${0}", playerOne.Profit);
         }
+
 
     }
 }

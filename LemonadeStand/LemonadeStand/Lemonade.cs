@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Lemonade
+    public class Lemonade
     {
         public List<Lemonade> cupsOfLemonade;
         private decimal lemonadePrice;
@@ -37,13 +37,12 @@ namespace LemonadeStand
         public void SetLemonadePrice()
         {
             Console.Write("Set your price per cup of lemonade: $");
-            LemonadePrice = Decimal.Parse(Console.ReadLine());
-            Console.WriteLine(LemonadePrice);
+            LemonadePrice = Convert.ToDecimal(Console.ReadLine());
         }
 
         public void DisplayCupsOfLemonade()
         {
-            Console.WriteLine("Cups of Lemonade made: {0}", cupsOfLemonade.Count);
+            Console.WriteLine("Cups of Lemonade: {0}", cupsOfLemonade.Count);
         }
     }
 }

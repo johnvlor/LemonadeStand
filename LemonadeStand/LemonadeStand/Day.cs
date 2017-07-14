@@ -12,8 +12,8 @@ namespace LemonadeStand
         public Customer customer;
         int day;
         int customerQty;
-        double probability;
-        double willingToBuy;
+        int probability;
+        int willingToBuy;
         int count;
 
         public Day()
@@ -21,6 +21,9 @@ namespace LemonadeStand
             weather = new Weather();
             customer = new Customer();
             day = 1;
+            customerQty = 0;
+            probability = 0;
+            willingToBuy = 0;
         }
 
         public void GetDay()
@@ -43,26 +46,26 @@ namespace LemonadeStand
             GetDay();
             GetCustomers(random);
             
-
         }
 
         public void GetCustomers(Random random)
         {
             customerQty = random.Next(100);
-            AddCustomers();
+            AddCustomers(random);
         }
 
-        public void AddCustomers()
+        public void AddCustomers(Random random)
         {
             for (int i = 0; i < customerQty; i++)
             {
+                //probability = random.Next(1, 6);
                 customer.customer.Add(new Customer());
             }
         }
 
         public void SellLemonade(Player playerOne, Random random)
         {
-            probability = random.Next(100);
+            //probability = random.Next(100);
 
             //if (probability >= 80)
             //{
@@ -72,15 +75,18 @@ namespace LemonadeStand
 
                     if (willingToBuy >= 5)
                     {
-                        int remove = Math.Min(playerOne.lemonade.cupsOfLemonade.Count, 1);
-                        playerOne.lemonade.cupsOfLemonade.RemoveRange(0, remove);
-                        count += 1;
+                        playerOne.lemonade.cupsOfLemonade.RemoveAt(1);
                         playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
+                        count += 1;
                     }   
                 }
             //}
             Console.WriteLine("Lemonade Sold: "+ count);
         }
 
+        public void PricePreference()
+        {
+            
+        }
     }
 }

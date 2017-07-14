@@ -9,9 +9,9 @@ namespace LemonadeStand
     class Game
     {
         public Player playerOne;
-        Rule rules;
-        Day day;
-        public Store store = new Store();
+        private Rule rules;
+        private Day day;
+        public Store store;
         Random random;
 
         public Game()
@@ -19,6 +19,7 @@ namespace LemonadeStand
             rules = new Rule();
             day = new Day();
             random = new Random();
+            store = new Store();
         }
 
         public void PlayGame()
@@ -30,9 +31,9 @@ namespace LemonadeStand
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
 
-            BuyInventory(playerOne);
+            BuyInventory();
 
-            playerOne.recipe.MakeLemonade(playerOne);
+            playerOne.MakeLemonade();
             playerOne.inventory.CheckInventory();
             playerOne.lemonade.DisplayCupsOfLemonade();
 
@@ -41,6 +42,7 @@ namespace LemonadeStand
             day.customer.DisplayCustomers();
             playerOne.lemonade.DisplayCupsOfLemonade();
             playerOne.DisplayMoney();
+            UserInterface.DisplayProfit(playerOne);
             playerOne.inventory.CheckInventory();
         }
 
@@ -49,7 +51,7 @@ namespace LemonadeStand
             playerOne = new Human("player one");
         }
 
-        public void BuyInventory(Player playerOne)
+        public void BuyInventory()
         {
             string playerInput = "";
             
@@ -87,7 +89,8 @@ namespace LemonadeStand
                     case "done":
                         break;
                     default:
-                        BuyInventory(playerOne);
+                        Console.WriteLine("Invalid choice.  Please try again.");
+                        BuyInventory();
                         break;
                 }
             }
