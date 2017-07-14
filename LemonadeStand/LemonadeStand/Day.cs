@@ -75,7 +75,7 @@ namespace LemonadeStand
 
                     if (willingToBuy >= 5)
                     {
-                        playerOne.lemonade.cupsOfLemonade.RemoveAt(1);
+                        playerOne.lemonade.cupsOfLemonade.RemoveAt(0);
                         playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
                         count += 1;
                     }   
