@@ -18,7 +18,7 @@ namespace LemonadeStand
         {
             rules = new Rule();
             day = new Day();
-
+            random = new Random();
         }
 
         public void PlayGame()
@@ -37,6 +37,11 @@ namespace LemonadeStand
             playerOne.lemonade.DisplayCupsOfLemonade();
 
             playerOne.lemonade.SetLemonadePrice();
+            day.SellLemonade(playerOne, random);
+            day.customer.DisplayCustomers();
+            playerOne.lemonade.DisplayCupsOfLemonade();
+            playerOne.DisplayMoney();
+            playerOne.inventory.CheckInventory();
         }
 
         public void GetPlayer()

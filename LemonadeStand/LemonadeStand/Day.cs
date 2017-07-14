@@ -12,6 +12,9 @@ namespace LemonadeStand
         public Customer customer;
         int day;
         int customerQty;
+        double probability;
+        double willingToBuy;
+        int count;
 
         public Day()
         {
@@ -39,13 +42,12 @@ namespace LemonadeStand
         {
             GetDay();
             GetCustomers(random);
-            customer.DisplayCustomers();
+            
 
         }
 
         public void GetCustomers(Random random)
         {
-            random = new Random();
             customerQty = random.Next(100);
             AddCustomers();
         }
@@ -56,6 +58,28 @@ namespace LemonadeStand
             {
                 customer.customer.Add(new Customer());
             }
+        }
+
+        public void SellLemonade(Player playerOne, Random random)
+        {
+            probability = random.Next(100);
+
+            //if (probability >= 80)
+            //{
+                for (int i = 0; i < customer.customer.Count; i++)
+                {
+                    willingToBuy = random.Next(10);
+
+                    if (willingToBuy >= 5)
+                    {
+                        int remove = Math.Min(playerOne.lemonade.cupsOfLemonade.Count, 1);
+                        playerOne.lemonade.cupsOfLemonade.RemoveRange(0, remove);
+                        count += 1;
+                        playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
+                    }   
+                }
+            //}
+            Console.WriteLine("Lemonade Sold: "+ count);
         }
 
     }

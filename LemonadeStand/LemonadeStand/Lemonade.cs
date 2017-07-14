@@ -9,7 +9,19 @@ namespace LemonadeStand
     class Lemonade
     {
         public List<Lemonade> cupsOfLemonade;
-        public decimal lemonadePrice;
+        private decimal lemonadePrice;
+
+        public decimal LemonadePrice
+        {
+            get
+            {
+                return lemonadePrice;
+            }
+            set
+            {
+                lemonadePrice = value;
+            }
+        }
 
         public Lemonade()
         {
@@ -25,8 +37,8 @@ namespace LemonadeStand
         public void SetLemonadePrice()
         {
             Console.Write("Set your price per cup of lemonade: $");
-            lemonadePrice = decimal.Parse(Console.ReadLine());
-            Console.WriteLine(lemonadePrice);
+            LemonadePrice = Decimal.Parse(Console.ReadLine());
+            Console.WriteLine(LemonadePrice);
         }
 
         public void DisplayCupsOfLemonade()

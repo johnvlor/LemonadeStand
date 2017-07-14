@@ -11,6 +11,7 @@ namespace LemonadeStand
         protected string name;
         private decimal money;
         private decimal expense;
+        private decimal profit;
         public Inventory inventory = new Inventory();
         public Recipe recipe = new Recipe();
         public Lemonade lemonade = new Lemonade();
@@ -39,6 +40,18 @@ namespace LemonadeStand
             }
         }
 
+        public decimal Profit
+        {
+            get
+            {
+                return profit;
+            }
+            set
+            {
+                profit = value;
+            }
+        }
+
         public Player()
         {
             SetMoney();
@@ -55,12 +68,14 @@ namespace LemonadeStand
             Console.WriteLine();
             Console.WriteLine("Money: ${0}", Money);
             Console.WriteLine("Expense: ${0}", Expense);
+            Console.WriteLine("Profit: ${0}", Profit);
         }
 
         public void SetMoney()
         {
             money = 20.00m;
             expense = 0m;
+            profit = 0m;
         }
 
 

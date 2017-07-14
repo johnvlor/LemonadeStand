@@ -34,7 +34,7 @@ namespace LemonadeStand
 
         public void GetWeatherForecast(Random random)
         {
-            random = new Random();
+            //random = new Random();
             forecast = random.Next(6);
             Console.WriteLine("\nWeather Forecast: {0}", weatherForecast[forecast]);
         }
@@ -44,27 +44,27 @@ namespace LemonadeStand
             switch(forecast)
             {
                 case 0:
-                    random = new Random();
+                    //random = new Random();
                     temperature = random.Next(80, 111);
                     break;
                 case 1:
-                    random = new Random();
+                   // random = new Random();
                     temperature = random.Next(70, 90);
                     break;
                 case 2:
-                    random = new Random();
+                   // random = new Random();
                     temperature = random.Next(60, 80);
                     break;
                 case 3:
-                    random = new Random();
+                    //random = new Random();
                     temperature = random.Next(50, 70);
                     break;
                 case 4:
-                    random = new Random();
+                    //random = new Random();
                     temperature = random.Next(40, 60);
                     break;
                 case 5:
-                    random = new Random();
+                    //random = new Random();
                     temperature = random.Next(40, 60);
                     break;
                 default:
