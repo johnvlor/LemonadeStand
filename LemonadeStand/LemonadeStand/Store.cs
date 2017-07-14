@@ -31,17 +31,20 @@ namespace LemonadeStand
             if (purchaseQty < 15)
             {
                 AddCups(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .05m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
             }
             else if ((purchaseQty >= 15) && (purchaseQty < 30))
             {
                 AddCups(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .04m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .04m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .04m);
             }
             else if (purchaseQty >= 30)
             {
                 AddCups(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .03m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .03m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .03m);
             }
 
         }
@@ -70,17 +73,20 @@ namespace LemonadeStand
             if (purchaseQty < 15)
             {
                 AddLemons(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .10m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .10m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .10m);
             }
             else if ((purchaseQty >= 15) && (purchaseQty < 30))
             {
                 AddLemons(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .07m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .07m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .07m);
             }
             else if (purchaseQty > 30)
             {
                 AddLemons(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .05m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
             }
 
         }
@@ -109,17 +115,20 @@ namespace LemonadeStand
             if (purchaseQty < 10)
             {
                 AddSugar(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .06m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .06m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .06m);
             }
             else if ((purchaseQty >= 10) && (purchaseQty < 20))
             {
                 AddSugar(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .05m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
             }
             else if (purchaseQty >= 20)
             {
                 AddSugar(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .04m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .04m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .04m);
             }
         }
 
@@ -147,17 +156,20 @@ namespace LemonadeStand
             if (purchaseQty < 100)
             {
                 AddIceCubes(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .03m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .03m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .03m);
             }
             else if ((purchaseQty >= 100) && (purchaseQty < 200))
             {
                 AddIceCubes(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .02m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .02m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .02m);
             }
             else if (purchaseQty >= 200)
             {
                 AddIceCubes(playerOne);
-                playerOne.money = playerOne.money - (purchaseQty * .01m);
+                playerOne.Money = playerOne.Money - (purchaseQty * .01m);
+                playerOne.Expense = playerOne.Expense + (purchaseQty * .01m);
             }
         }
 

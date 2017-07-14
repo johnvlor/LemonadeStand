@@ -25,7 +25,7 @@ namespace LemonadeStand
         public void SetLemonadePrice()
         {
             Console.Write("Set your price per cup of lemonade: $");
-            lemonadePrice = Decimal.Parse(Console.ReadLine());
+            lemonadePrice = decimal.Parse(Console.ReadLine());
             Console.WriteLine(lemonadePrice);
         }
 

@@ -9,10 +9,35 @@ namespace LemonadeStand
     class Player
     {
         protected string name;
-        public decimal money;
+        private decimal money;
+        private decimal expense;
         public Inventory inventory = new Inventory();
         public Recipe recipe = new Recipe();
         public Lemonade lemonade = new Lemonade();
+
+        public decimal Money
+        {
+            get
+            {
+                return money;
+            }
+            set
+            {
+                money = value;
+            }
+        }
+
+        public decimal Expense
+        {
+            get
+            {
+                return expense;
+            }
+            set
+            {
+                expense = value;
+            }
+        }
 
         public Player()
         {
@@ -24,20 +49,18 @@ namespace LemonadeStand
             return name;
         }
 
-        public decimal GetMoney()
-        {
-            return money;
-        }
 
         public void DisplayMoney()
         {
             Console.WriteLine();
-            Console.WriteLine("Money: ${0}", GetMoney());
+            Console.WriteLine("Money: ${0}", Money);
+            Console.WriteLine("Expense: ${0}", Expense);
         }
 
         public void SetMoney()
         {
             money = 20.00m;
+            expense = 0m;
         }
 
 
