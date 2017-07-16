@@ -13,14 +13,8 @@ namespace LemonadeStand
 
         public decimal LemonadePrice
         {
-            get
-            {
-                return lemonadePrice;
-            }
-            set
-            {
-                lemonadePrice = value;
-            }
+            get { return lemonadePrice; }
+            set { lemonadePrice = value; }           
         }
 
         public Lemonade()
@@ -36,7 +30,7 @@ namespace LemonadeStand
 
         public void SetLemonadePrice()
         {
-            Console.Write("Set your price per cup of lemonade: $");
+            Console.Write("\nSet your price per cup of lemonade: $");
             LemonadePrice = Convert.ToDecimal(Console.ReadLine());
         }
 

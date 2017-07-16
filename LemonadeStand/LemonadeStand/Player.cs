@@ -72,6 +72,37 @@ namespace LemonadeStand
             UseIceCubes();
         }
 
+        public void DetermineIfUsingRecipe()
+        {
+            string choice;
+            Console.WriteLine("Do you want to use a Recipe?");
+            choice = Console.ReadLine();
+
+            if (choice == "yes")
+            {
+                MakeLemonadeWithRecipe(recipe);
+            }
+            else
+            {
+                MakeLemonade();
+            }
+        }
+
+        public void MakeLemonadeWithRecipe(Recipe recipe)
+        {
+            Console.WriteLine(recipe.CupQty);
+            inventory.cup.cups.RemoveRange(0, recipe.CupQty);
+            inventory.lemon.lemons.RemoveRange(0, recipe.LemonQty);
+            inventory.sugar.sugar.RemoveRange(0, recipe.SugarQty);
+            inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
+
+            for (int i = 0; i < recipe.CupQty; i++)
+            {
+                lemonade.cupsOfLemonade.Add(new Lemonade());
+            }
+        }
+
+
         public void UseCups()
         {
             Console.Write("Cups of lemonade to make? ");
@@ -140,6 +171,11 @@ namespace LemonadeStand
             {
                 lemonade.cupsOfLemonade.Add(new Lemonade());
             }
+        }
+
+        public void SellLemonade()
+        {
+
         }
     }
 }

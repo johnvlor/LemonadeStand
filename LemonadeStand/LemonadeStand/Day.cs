@@ -11,7 +11,7 @@ namespace LemonadeStand
         public Weather weather;
         public Customer customer;
         int day;
-        int customerQty;
+        int noCustomer;
         int probability;
         int willingToBuy;
         int count;
@@ -21,7 +21,7 @@ namespace LemonadeStand
             weather = new Weather();
             customer = new Customer();
             day = 1;
-            customerQty = 0;
+            noCustomer = 0;
             probability = 0;
             willingToBuy = 0;
         }
@@ -50,43 +50,79 @@ namespace LemonadeStand
 
         public void GetCustomers(Random random)
         {
-            customerQty = random.Next(100);
-            AddCustomers(random);
+            DetermineNumberCustomers(random);
+            AddCustomers(noCustomer);
         }
 
-        public void AddCustomers(Random random)
+        public int DetermineNumberCustomers(Random random)
         {
-            for (int i = 0; i < customerQty; i++)
+            if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[0])
             {
-                //probability = random.Next(1, 6);
-                customer.customer.Add(new Customer());
+                noCustomer = random.Next(60, 120);
+                return noCustomer;
+            }
+            else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[1])
+            {
+                noCustomer = random.Next(50, 90);
+                return noCustomer;
+            }
+            else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[2])
+            {
+                noCustomer = random.Next(40, 80);
+                return noCustomer;
+            }
+            else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[3])
+            {
+                noCustomer = random.Next(20, 60);
+                return noCustomer;
+            }
+            else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[4])
+            {
+                noCustomer = random.Next(1, 40);
+                return noCustomer;
+            }
+            else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[5])
+            {
+                noCustomer = random.Next(70, 100);
+                return noCustomer;
+            }
+            else
+            {
+                return default(int);
+            }
+        }
+
+        public void AddCustomers(int noCustomers)
+        {
+            for (int i = 0; i < noCustomers; i++)
+            {
+                customer.potentialCustomer.Add(new Customer());
             }
         }
 
         public void SellLemonade(Player playerOne, Random random)
         {
-            //probability = random.Next(100);
 
-            //if (probability >= 80)
-            //{
-                for (int i = 0; i < customer.customer.Count; i++)
+            for (int i = 0; i < customer.potentialCustomer.Count; i++)
+            {
+                willingToBuy = random.Next(10);
+
+                if (willingToBuy >= 5)
                 {
-                    willingToBuy = random.Next(10);
-
-                    if (willingToBuy >= 5)
-                    {
-                        playerOne.lemonade.cupsOfLemonade.RemoveAt(0);
-                        playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
-                        count += 1;
-                    }   
+                    Console.WriteLine(playerOne.lemonade.cupsOfLemonade.Count);
+                    playerOne.lemonade.cupsOfLemonade.RemoveAt(0);
+                    playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
+                    count += 1;
+                } 
+                else if (playerOne.lemonade.cupsOfLemonade.Count == 0)
+                {
+                    Console.WriteLine("Out of Stock");
+                    break;
                 }
-            //}
-            Console.WriteLine("Lemonade Sold: "+ count);
+            }
+
+            Console.WriteLine("Cups of Lemonade Sold: "+ count);
         }
 
-        public void PricePreference()
-        {
-            
-        }
     }
 }

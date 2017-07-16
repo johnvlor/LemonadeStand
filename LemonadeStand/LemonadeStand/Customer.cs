@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Customer
     {
-        public List<Customer> customer;
+        public List<Customer> potentialCustomer;
         private double buyProbability;
 
         public double BuyProbability
@@ -25,13 +25,18 @@ namespace LemonadeStand
 
         public Customer()
         {
-            customer = new List<Customer>();
+            potentialCustomer = new List<Customer>();
             buyProbability = 100;
         }
 
-        public void DisplayCustomers()
+        public void DisplayPotentialCustomers()
         {
-            Console.WriteLine("Customers: {0}", customer.Count);
+            Console.WriteLine("Customers: {0}", potentialCustomer.Count);
+        }
+
+        public void SetCustomerPreference(Player playerOne)
+        {
+            
         }
     }
 }

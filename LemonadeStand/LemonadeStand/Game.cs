@@ -9,14 +9,12 @@ namespace LemonadeStand
     class Game
     {
         public Player playerOne;
-        private Rule rules;
         private Day day;
         public Store store;
         Random random;
 
         public Game()
         {
-            rules = new Rule();
             day = new Day();
             random = new Random();
             store = new Store();
@@ -24,22 +22,23 @@ namespace LemonadeStand
 
         public void PlayGame()
         {
-            rules.GetRules();
+            UserInterface.GetRules();
             GetPlayer();
             day.GetTodaysWeather(random);
             day.StartDay(random);
+            day.customer.DisplayPotentialCustomers();
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
 
             BuyInventory();
 
-            playerOne.MakeLemonade();
+            playerOne.DetermineIfUsingRecipe();
             playerOne.inventory.CheckInventory();
             playerOne.lemonade.DisplayCupsOfLemonade();
 
             playerOne.lemonade.SetLemonadePrice();
             day.SellLemonade(playerOne, random);
-            day.customer.DisplayCustomers();
+            //day.customer.DisplayCustomers();
             playerOne.lemonade.DisplayCupsOfLemonade();
             playerOne.DisplayMoney();
             UserInterface.DisplayProfit(playerOne);

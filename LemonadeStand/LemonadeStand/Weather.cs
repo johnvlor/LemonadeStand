@@ -8,9 +8,9 @@ namespace LemonadeStand
 {
     class Weather
     {
-        int forecast;
+        public int forecast;
         int temperature;
-        List<string> weatherForecast;
+        public List<string> weatherForecast;
 
         public Weather()
         {
