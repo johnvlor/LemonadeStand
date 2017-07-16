@@ -19,7 +19,7 @@ namespace LemonadeStand
 
         public static void DisplayProfit(Player playerOne)
         {
-            Console.WriteLine("Profit: ${0}", playerOne.Profit);
+            Console.WriteLine("Today's Profit: ${0}", playerOne.Profit);
         }
 
 

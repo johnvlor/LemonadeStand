@@ -15,7 +15,7 @@ namespace LemonadeStand
 
         public Game()
         {
-            day = new Day();
+            day = new Day(random);
             random = new Random();
             store = new Store();
         }
@@ -24,8 +24,8 @@ namespace LemonadeStand
         {
             UserInterface.GetRules();
             GetPlayer();
-            day.GetTodaysWeather(random);
             day.StartDay(random);
+            day.GetTodaysWeather(random);
             day.customer.DisplayPotentialCustomers();
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
@@ -52,43 +52,49 @@ namespace LemonadeStand
 
         public void BuyInventory()
         {
-            string playerInput = "";
+            int playerInput = 0;
             
-            while (playerInput != "done")
+            while (playerInput != 5)
             {
-                Console.WriteLine("\nWhat would you like to buy? Input 'done' when finished.");
-                playerInput = Console.ReadLine();
+                Console.Write("\nWhat would you like to buy?" +
+                    "\n1. Cups" +
+                    "\n2. Lemons" +
+                    "\n3. Sugar" +
+                    "\n4. Ice cubes" +
+                    "\n5. Done with the store" +
+                    "\nPlease enter the option here: ");
+                playerInput = Int32.Parse(Console.ReadLine());
 
                 switch (playerInput)
                 {
-                    case "cups":
+                    case 1:
                         store.DisplayPriceOfCups();
-                        store.BuyCups(playerOne);
+                        store.BuyCups(playerOne, playerInput);
                         playerOne.DisplayMoney();
                         playerOne.inventory.CheckInventory();
                         break;
-                    case "lemons":
+                    case 2:
                         store.DisplayPriceOfLemons();
-                        store.BuyLemons(playerOne);
+                        store.BuyLemons(playerOne, playerInput);
                         playerOne.DisplayMoney();
                         playerOne.inventory.CheckInventory();
                         break;
-                    case "sugar":
+                    case 3:
                         store.DisplayPriceOfSugar();
-                        store.BuySugar(playerOne);
+                        store.BuySugar(playerOne, playerInput);
                         playerOne.DisplayMoney();
                         playerOne.inventory.CheckInventory();
                         break;
-                    case "ice cubes":
+                    case 4:
                         store.DisplayPriceOfIceCubes();
-                        store.BuyIceCubes(playerOne);
+                        store.BuyIceCubes(playerOne, playerInput);
                         playerOne.DisplayMoney();
                         playerOne.inventory.CheckInventory();
                         break;
-                    case "done":
+                    case 5:
                         break;
                     default:
-                        Console.WriteLine("Invalid choice.  Please try again.");
+                        Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
                         BuyInventory();
                         break;
                 }

@@ -9,10 +9,18 @@ namespace LemonadeStand
     public class Cup
     {
         public List<Cup> cups;
+        private decimal price;
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
 
         public Cup()
         {
             cups = new List<Cup>();
+            price = .05m;
         }
 
         public void DisplayCups()

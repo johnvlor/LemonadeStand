@@ -9,10 +9,18 @@ namespace LemonadeStand
     public class Lemon
     {
         public List<Lemon> lemons;
+        private decimal price;
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
 
         public Lemon()
         {
             lemons = new List<Lemon>();
+            price = .10m;
         }
 
         public void DisplayLemons()

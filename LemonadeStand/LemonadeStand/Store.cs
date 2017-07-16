@@ -9,6 +9,7 @@ namespace LemonadeStand
     public class Store
     {
         int purchaseQty;
+        decimal itemPrice;
         
         public Store()
         {
@@ -23,29 +24,16 @@ namespace LemonadeStand
             Console.WriteLine("30 or more for $0.03 each");
         }
 
-        public void BuyCups(Player playerOne)
+        public void BuyCups(Player playerOne, int playerInput)
         {
-            Console.WriteLine("How many would you like to buy?");
+            Console.Write("How many would you like to buy? ");
             purchaseQty = Int32.Parse(Console.ReadLine());
 
-            if (purchaseQty < 15)
-            {
-                playerOne.inventory.AddCups(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
-            }
-            else if ((purchaseQty >= 15) && (purchaseQty < 30))
-            {
-                playerOne.inventory.AddCups(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .04m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .04m);
-            }
-            else if (purchaseQty >= 30)
-            {
-                playerOne.inventory.AddCups(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .03m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .03m);
-            }
+            DeterminePrice(playerOne, playerInput);
+
+            playerOne.inventory.AddCups(purchaseQty);
+            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
+            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
         }
 
         public void DisplayPriceOfLemons()
@@ -56,30 +44,16 @@ namespace LemonadeStand
             Console.WriteLine("30 or more for $0.05 each");
         }
 
-        public void BuyLemons(Player playerOne)
+        public void BuyLemons(Player playerOne, int playerInput)
         {
-            Console.WriteLine("How many would you like to buy?");
+            Console.Write("How many would you like to buy? ");
             purchaseQty = Int32.Parse(Console.ReadLine());
 
-            if (purchaseQty < 15)
-            {
-                playerOne.inventory.AddLemons(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .10m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .10m);
-            }
-            else if ((purchaseQty >= 15) && (purchaseQty < 30))
-            {
-                playerOne.inventory.AddLemons(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .07m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .07m);
-            }
-            else if (purchaseQty > 30)
-            {
-                playerOne.inventory.AddLemons(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
-            }
+            DeterminePrice(playerOne, playerInput);
 
+            playerOne.inventory.AddLemons(purchaseQty);
+            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
+            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
         }
 
         public void DisplayPriceOfSugar()
@@ -90,29 +64,16 @@ namespace LemonadeStand
             Console.WriteLine("20 cups or more for $0.04 each");
         }
 
-        public void BuySugar(Player playerOne)
+        public void BuySugar(Player playerOne, int playerInput)
         {
-            Console.WriteLine("How many would you like to buy?");
+            Console.Write("How many would you like to buy? ");
             purchaseQty = Int32.Parse(Console.ReadLine());
 
-            if (purchaseQty < 10)
-            {
-                playerOne.inventory.AddSugar(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .06m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .06m);
-            }
-            else if ((purchaseQty >= 10) && (purchaseQty < 20))
-            {
-                playerOne.inventory.AddSugar(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .05m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .05m);
-            }
-            else if (purchaseQty >= 20)
-            {
-                playerOne.inventory.AddSugar(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .04m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .04m);
-            }
+            DeterminePrice(playerOne, playerInput);
+
+            playerOne.inventory.AddSugar(purchaseQty);
+            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
+            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
         }
 
         public void DisplayPriceOfIceCubes()
@@ -123,30 +84,93 @@ namespace LemonadeStand
             Console.WriteLine("200 or more for $0.01 each");
         }
 
-        public void BuyIceCubes(Player playerOne)
+        public void BuyIceCubes(Player playerOne, int playerInput)
         {
-            Console.WriteLine("How many would you like to buy?");
+            Console.Write("How many would you like to buy? ");
             purchaseQty = Int32.Parse(Console.ReadLine());
 
-            if (purchaseQty < 100)
-            {
-                playerOne.inventory.AddIceCubes(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .03m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .03m);
-            }
-            else if ((purchaseQty >= 100) && (purchaseQty < 200))
-            {
-                playerOne.inventory.AddIceCubes(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .02m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .02m);
-            }
-            else if (purchaseQty >= 200)
-            {
-                playerOne.inventory.AddIceCubes(purchaseQty);
-                playerOne.Money = playerOne.Money - (purchaseQty * .01m);
-                playerOne.Expense = playerOne.Expense + (purchaseQty * .01m);
-            }
+            DeterminePrice(playerOne, playerInput);
+
+            playerOne.inventory.AddIceCubes(purchaseQty);
+            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
+            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
         }
 
+        public decimal DeterminePrice(Player playerOne, int playerInput)
+        {
+            if (playerInput == 1)
+            {
+                if (purchaseQty < 15)
+                {
+                    itemPrice = playerOne.inventory.cup.Price;
+                    return itemPrice;
+                }
+                else if ((purchaseQty >= 15) && (purchaseQty < 30))
+                {
+                    itemPrice = .04m;
+                    return itemPrice;
+                }
+                else if (purchaseQty >= 30)
+                {
+                    itemPrice = .03m;
+                    return itemPrice;
+                }
+            }
+            else if (playerInput == 2)
+            {
+                if (purchaseQty < 15)
+                {
+                    itemPrice = playerOne.inventory.lemon.Price;
+                    return itemPrice;
+                }
+                else if ((purchaseQty >= 15) && (purchaseQty < 30))
+                {
+                    itemPrice = .07m;
+                    return itemPrice;
+                }
+                else if (purchaseQty >= 30)
+                {
+                    itemPrice = .05m;
+                    return itemPrice;
+                }
+            }
+            else if (playerInput == 3)
+            {
+                if (purchaseQty < 10)
+                {
+                    itemPrice = playerOne.inventory.sugar.Price;
+                    return itemPrice;
+                }
+                else if ((purchaseQty >= 10) && (purchaseQty < 20))
+                {
+                    itemPrice = .05m;
+                    return itemPrice;
+                }
+                else if (purchaseQty >= 20)
+                {
+                    itemPrice = .04m;
+                    return itemPrice;
+                }
+            }
+            else if (playerInput == 4)
+            {
+                if (purchaseQty < 100)
+                {
+                    itemPrice = playerOne.inventory.iceCubes.Price;
+                    return itemPrice;
+                }
+                else if ((purchaseQty >= 100) && (purchaseQty < 200))
+                {
+                    itemPrice = .02m;
+                    return itemPrice;
+                }
+                else if (purchaseQty >= 200)
+                {
+                    itemPrice = .01m;
+                    return itemPrice;
+                }
+            }
+            return default(decimal);
+        }
     }
 }

@@ -12,17 +12,17 @@ namespace LemonadeStand
         public Customer customer;
         int day;
         int noCustomer;
-        int probability;
+        //int probability;
         int willingToBuy;
         int count;
 
-        public Day()
+        public Day(Random random)
         {
             weather = new Weather();
-            customer = new Customer();
+            customer = new Customer(0);
             day = 1;
             noCustomer = 0;
-            probability = 0;
+            //probability = 0;
             willingToBuy = 0;
         }
 
@@ -51,7 +51,7 @@ namespace LemonadeStand
         public void GetCustomers(Random random)
         {
             DetermineNumberCustomers(random);
-            AddCustomers(noCustomer);
+            AddCustomers(noCustomer, random);
         }
 
         public int DetermineNumberCustomers(Random random)
@@ -92,11 +92,11 @@ namespace LemonadeStand
             }
         }
 
-        public void AddCustomers(int noCustomers)
+        public void AddCustomers(int noCustomers, Random random)
         {
             for (int i = 0; i < noCustomers; i++)
             {
-                customer.potentialCustomer.Add(new Customer());
+                customer.potentialCustomer.Add(new Customer(random.Next(0,100)));
             }
         }
 

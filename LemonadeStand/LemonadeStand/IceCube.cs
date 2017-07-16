@@ -9,10 +9,18 @@ namespace LemonadeStand
     public class IceCube
     {
         public List<IceCube> iceCubes;
+        private decimal price;
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
 
         public IceCube()
         {
             iceCubes = new List<IceCube>();
+            price = .03m;
         }
 
         public void DisplayIceCubes()

@@ -8,25 +8,14 @@ namespace LemonadeStand
 {
     class Customer
     {
+        Random random;
         public List<Customer> potentialCustomer;
-        private double buyProbability;
+        public double buyProbability;
 
-        public double BuyProbability
-        {
-            get
-            {
-                return buyProbability;
-            }
-            set
-            {
-                buyProbability = value;
-            }
-        }
-
-        public Customer()
+        public Customer(double buyProbability)
         {
             potentialCustomer = new List<Customer>();
-            buyProbability = 100;
+            SetCustomerPreference();
         }
 
         public void DisplayPotentialCustomers()
@@ -34,9 +23,10 @@ namespace LemonadeStand
             Console.WriteLine("Customers: {0}", potentialCustomer.Count);
         }
 
-        public void SetCustomerPreference(Player playerOne)
+        public void SetCustomerPreference()
         {
-            
+            buyProbability = 100;
+
         }
     }
 }
