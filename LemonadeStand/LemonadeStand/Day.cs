@@ -41,7 +41,7 @@ namespace LemonadeStand
 
         public void StartDay(Random random)
         {
-            GetDay();
+            
             GetTodaysWeather(random);
             GetCustomers(random);
             

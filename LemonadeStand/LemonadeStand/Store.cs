@@ -10,11 +10,18 @@ namespace LemonadeStand
     {
         int purchaseQty;
         decimal itemPrice;
-        decimal transactionAmount;
-        
+        private decimal transactionAmount;
+
+        public decimal TransactionAmount
+        {
+            get { return transactionAmount; }
+            set { transactionAmount = value; }
+        }
+
+
         public Store()
         {
-
+            //transactionAmount = 0m;
         }
 
         public void BuyInventory(Player playerOne)
@@ -37,25 +44,29 @@ namespace LemonadeStand
                     case 1:
                         DisplayPriceOfCups();
                         BuyCups(playerOne, playerInput);
-                        playerOne.DisplayMoney();
+                        UserInterface.DisplayMoney(playerOne);
+                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 2:
                         DisplayPriceOfLemons();
                         BuyLemons(playerOne, playerInput);
-                        playerOne.DisplayMoney();
+                        UserInterface.DisplayMoney(playerOne);
+                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 3:
                         DisplayPriceOfSugar();
                         BuySugar(playerOne, playerInput);
-                        playerOne.DisplayMoney();
+                        UserInterface.DisplayMoney(playerOne);
+                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 4:
                         DisplayPriceOfIceCubes();
                         BuyIceCubes(playerOne, playerInput);
-                        playerOne.DisplayMoney();
+                        UserInterface.DisplayMoney(playerOne);
+                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 5:
@@ -104,6 +115,7 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            VerifyEnoughMoney(playerOne);
             CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddLemons(purchaseQty);
@@ -124,6 +136,7 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            VerifyEnoughMoney(playerOne);
             CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddSugar(purchaseQty);
@@ -144,6 +157,7 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            VerifyEnoughMoney(playerOne);
             CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddIceCubes(purchaseQty);
@@ -227,27 +241,26 @@ namespace LemonadeStand
             return default(decimal);
         }
 
-        public decimal VerifyEnoughMoney(Player playerOne)
+        public void VerifyEnoughMoney(Player playerOne)
         {
-            transactionAmount = 0m;
+            TransactionAmount = 0m;
 
-            transactionAmount = purchaseQty * itemPrice;
-            if (transactionAmount > playerOne.Money)
+            TransactionAmount = purchaseQty * itemPrice;
+            if (TransactionAmount > playerOne.Money)
             {
                 Console.WriteLine("Sorry, not enough money.");
                 BuyInventory(playerOne);
             }
-            else
-            {
-                return transactionAmount;
-            }
-            return default(decimal);
+
+            //return TransactionAmount;
+
         }
 
         private void CalculateBuyingExpense(Player playerOne)
         {
-            playerOne.Expense = playerOne.Expense + transactionAmount;
-            playerOne.Money = playerOne.Money - transactionAmount;
+            Console.WriteLine("transaction amount "+TransactionAmount);
+            playerOne.Expense = playerOne.Expense + TransactionAmount;
+            playerOne.Money = playerOne.Money - TransactionAmount;
         }
     }
 }

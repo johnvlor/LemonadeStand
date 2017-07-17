@@ -12,46 +12,70 @@ namespace LemonadeStand
         public Day day;
         public Store store;
         Random random;
+        public List<Day> gameDays;
+        int noDays;
 
         public Game()
         {
             day = new Day();
             random = new Random();
             store = new Store();
+            gameDays = new List<Day>();
+            noDays = 7;
         }
 
         public void PlayGame()
         {
             UserInterface.GetRules();
             GetPlayer();
-            day.StartDay(random);
-           //day.GetTodaysWeather(random);
-            day.customer.DisplayPotentialCustomers();
-            playerOne.DisplayMoney();
-            playerOne.inventory.CheckInventory();
+            GetNumberOfGameDays();
 
-            store.BuyInventory(playerOne);
+            foreach (Day newGameDays in gameDays)
+            {
+                Console.WriteLine("\nDay {0}", (gameDays.IndexOf(newGameDays)+1));
+                day.StartDay(random);
 
-            playerOne.MakeLemonade();
-            //playerOne.inventory.CheckInventory();
-            playerOne.lemonade.DisplayCupsOfLemonade();
+                UserInterface.DisplayMoney(playerOne);
+                playerOne.inventory.CheckInventory();
 
-            playerOne.SetLemonadePrice();
-            playerOne.GetLemonadeType();
-            playerOne.BuyLemonade(day, random);
-            //day.customer.DisplayCustomers();
-            //playerOne.lemonade.DisplayCupsOfLemonade();
-            day.GetDay();
-            GetProfit();
-            CalculateTotalRevenue();
-            playerOne.DisplayMoney();            
-            UserInterface.DisplayProfit(playerOne);
-            playerOne.inventory.CheckInventory();
+                store.BuyInventory(playerOne);
+
+                playerOne.MakeLemonade();
+                playerOne.lemonade.DisplayCupsOfLemonade();
+
+                playerOne.SetLemonadePrice();
+                playerOne.GetLemonadeType();
+                day.customer.DisplayPotentialCustomers();
+                playerOne.BuyLemonade(day, random);
+
+                Console.WriteLine("\nEnd of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));
+                GetProfit();
+                
+                //UserInterface.DisplayMoney(playerOne);
+                UserInterface.DisplayProfit(playerOne);
+                CalculateAccumulatedMoney();
+                UserInterface.DisplayMoney(playerOne);
+                playerOne.inventory.CheckInventory();
+                CalculateTotalRevenue();
+                ClearInventory(playerOne);
+                ClearCustomers();
+                ClearExpense();
+            }
+
+            UserInterface.DisplayRevenue(playerOne);
         }
 
         public void GetPlayer()
         {
             playerOne = new Human("player one");
+        }
+
+        public void GetNumberOfGameDays()
+        {
+            for (int i = 0; i < noDays; i++)
+            {
+                gameDays.Add(new Day());
+            }
         }
 
         public void GetProfit()
@@ -61,7 +85,29 @@ namespace LemonadeStand
 
         public void CalculateTotalRevenue()
         {
-            playerOne.TotalRevenue = playerOne.TotalRevenue + (playerOne.Profit - playerOne.Expense);
+            playerOne.TotalRevenue = playerOne.TotalRevenue + playerOne.Profit;
+        }
+
+        public void CalculateAccumulatedMoney()
+        {
+            playerOne.Money = playerOne.Money + playerOne.Profit;
+        }
+
+        public void ClearInventory(Player playerOne)
+        {
+            Console.WriteLine("Ice Cubes have melted");
+            playerOne.inventory.iceCubes.iceCubes.Clear();
+        }
+
+        public void ClearExpense()
+        {
+            playerOne.Expense = 0m;
+        }
+
+        public void ClearCustomers()
+        {
+            day.customer.potentialCustomer.Clear();
+            day.customer.purchasingCustomer.Clear();
         }
 
     }

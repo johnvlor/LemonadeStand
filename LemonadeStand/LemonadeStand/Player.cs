@@ -54,12 +54,12 @@ namespace LemonadeStand
             return name;
         }
 
-        public void DisplayMoney()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Money: ${0}", Money);
-            Console.WriteLine("Expense: ${0}", Expense);
-        }
+        //public void DisplayMoney()
+        //{
+        //    Console.WriteLine();
+        //    Console.WriteLine("Money: ${0}", Money);
+        //    Console.WriteLine("Expense: ${0}", Expense);
+        //}
 
         public void SetMoney()
         {
