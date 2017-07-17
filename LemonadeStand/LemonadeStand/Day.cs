@@ -10,41 +10,19 @@ namespace LemonadeStand
     {
         public Weather weather;
         public Customer customer;
-        int day;
-        int noCustomer;
-        int willingToBuy;
-        int count;
+        private int noCustomer;
 
         public Day()
         {
             weather = new Weather();
             customer = new Customer(0);
-            day = 1;
             noCustomer = 0;
-            willingToBuy = 0;
-        }
-
-        public void GetDay()
-        {
-            Console.WriteLine("Day {0}", day);
-        }
-
-        public int CheckDay()
-        {
-            return day += 1;
-        }
-
-        public void GetTodaysWeather(Random random)
-        {
-            weather.DisplayWeather(random);
         }
 
         public void StartDay(Random random)
         {
-            
-            GetTodaysWeather(random);
-            GetCustomers(random);
-            
+            weather.DisplayWeather(random);
+            GetCustomers(random);            
         }
 
         public void GetCustomers(Random random)
@@ -97,36 +75,7 @@ namespace LemonadeStand
             {
                 customer.potentialCustomer.Add(new Customer(random.Next(0,4)));
             }
-
-            //foreach (Customer x in customer.potentialCustomer)
-            //{
-            //    Console.WriteLine(x.lemonadeTypePreference);
-            //}
         }
-
-        public void SellLemonade(Player playerOne, Random random)
-        {
-
-            for (int i = 0; i < customer.potentialCustomer.Count; i++)
-            {
-                willingToBuy = random.Next(10);
-
-                if (willingToBuy >= 5)
-                {
-                    //Console.WriteLine(playerOne.lemonade.cupsOfLemonade.Count);
-                    playerOne.lemonade.cupsOfLemonade.RemoveAt(0);
-                    playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
-                    count += 1;
-                } 
-                else if (playerOne.lemonade.cupsOfLemonade.Count == 0)
-                {
-                    Console.WriteLine("Out of Stock");
-                    break;
-                }
-            }
-            Console.WriteLine("Cups of Lemonade Sold: "+ count);
-        }
-
         
     }
 }

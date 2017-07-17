@@ -18,10 +18,9 @@ namespace LemonadeStand
             set { transactionAmount = value; }
         }
 
-
         public Store()
         {
-            //transactionAmount = 0m;
+
         }
 
         public void BuyInventory(Player playerOne)
@@ -37,7 +36,12 @@ namespace LemonadeStand
                     "\n4. Ice cubes" +
                     "\n5. Done with the store" +
                     "\nPlease enter the option here: ");
-                playerInput = Int32.Parse(Console.ReadLine());
+                try
+                {
+                    playerInput = Int32.Parse(Console.ReadLine());
+                }
+                catch(FormatException)
+                { }
 
                 switch (playerInput)
                 {
@@ -75,7 +79,7 @@ namespace LemonadeStand
                     default:
                         Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
                         BuyInventory(playerOne);
-                        break;
+                        return;
                 }
             }
         }
@@ -91,7 +95,14 @@ namespace LemonadeStand
         public void BuyCups(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
-            purchaseQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                purchaseQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                
+            }
 
             DeterminePrice(playerOne, playerInput);
             VerifyEnoughMoney(playerOne);
@@ -112,7 +123,14 @@ namespace LemonadeStand
         public void BuyLemons(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
-            purchaseQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                purchaseQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
 
             DeterminePrice(playerOne, playerInput);
             VerifyEnoughMoney(playerOne);
@@ -133,7 +151,14 @@ namespace LemonadeStand
         public void BuySugar(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
-            purchaseQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                purchaseQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
 
             DeterminePrice(playerOne, playerInput);
             VerifyEnoughMoney(playerOne);
@@ -154,14 +179,20 @@ namespace LemonadeStand
         public void BuyIceCubes(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
-            purchaseQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                purchaseQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
 
             DeterminePrice(playerOne, playerInput);
             VerifyEnoughMoney(playerOne);
             CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddIceCubes(purchaseQty);
-
         }
 
         public decimal DeterminePrice(Player playerOne, int playerInput)
@@ -251,8 +282,6 @@ namespace LemonadeStand
                 Console.WriteLine("Sorry, not enough money.");
                 BuyInventory(playerOne);
             }
-
-            //return TransactionAmount;
 
         }
 

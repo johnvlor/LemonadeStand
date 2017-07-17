@@ -19,7 +19,6 @@ namespace LemonadeStand
             lemon = new Lemon();
             sugar = new Sugar();
             iceCubes = new IceCube();
-
         }
 
         public void CheckInventory()
@@ -62,6 +61,5 @@ namespace LemonadeStand
                 iceCubes.iceCubes.Add(new IceCube());
             }
         }
-
     }
 }

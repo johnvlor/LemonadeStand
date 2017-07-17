@@ -54,13 +54,6 @@ namespace LemonadeStand
             return name;
         }
 
-        //public void DisplayMoney()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine("Money: ${0}", Money);
-        //    Console.WriteLine("Expense: ${0}", Expense);
-        //}
-
         public void SetMoney()
         {
             money = 15.00m;
@@ -138,7 +131,15 @@ namespace LemonadeStand
         public void UseCups()
         {
             Console.Write("Cups of lemonade to make? ");
-            recipe.CupQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                recipe.CupQty = Int32.Parse(Console.ReadLine());
+            }
+            catch(FormatException)
+            {
+
+            }
+
             try
             {
                 inventory.cup.cups.RemoveRange(0, recipe.CupQty);
@@ -153,7 +154,14 @@ namespace LemonadeStand
         public void UseLemons()
         {
             Console.Write("Lemons to use? ");
-            recipe.LemonQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                recipe.LemonQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
 
             try
             {
@@ -169,7 +177,14 @@ namespace LemonadeStand
         public void UseSugar()
         {
             Console.Write("Cups of Sugar to use? ");
-            recipe.SugarQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                recipe.SugarQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
 
             try
             {
@@ -185,7 +200,15 @@ namespace LemonadeStand
         public void UseIceCubes()
         {
             Console.Write("Ice Cubes to use? ");
-            recipe.IceCubesQty = Int32.Parse(Console.ReadLine());
+            try
+            {
+                recipe.IceCubesQty = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+
+            }
+            
             try
             {
                 inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
@@ -208,7 +231,15 @@ namespace LemonadeStand
         public void SetLemonadePrice()
         {
             Console.Write("\nSet your price per cup of lemonade: $");
-            lemonade.LemonadePrice = Convert.ToDecimal(Console.ReadLine());
+            try
+            {
+                lemonade.LemonadePrice = Convert.ToDecimal(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Not a valid input.  Please enter a price (ie. 1.00, .50, .25)");
+                SetLemonadePrice();
+            }
         }
 
         public int GetLemonadeType()
