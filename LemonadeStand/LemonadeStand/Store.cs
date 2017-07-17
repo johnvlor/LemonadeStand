@@ -101,7 +101,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-                
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                BuyCups(playerOne, playerInput);
+                return;
             }
 
             DeterminePrice(playerOne, playerInput);
@@ -129,7 +131,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                BuyLemons(playerOne, playerInput);
+                return;
             }
 
             DeterminePrice(playerOne, playerInput);
@@ -157,7 +161,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                BuySugar(playerOne, playerInput);
+                return;
             }
 
             DeterminePrice(playerOne, playerInput);
@@ -185,7 +191,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                BuyIceCubes(playerOne, playerInput);
+                return;
             }
 
             DeterminePrice(playerOne, playerInput);

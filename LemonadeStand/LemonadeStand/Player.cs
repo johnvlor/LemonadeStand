@@ -137,7 +137,9 @@ namespace LemonadeStand
             }
             catch(FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                UseCups();
+                return;
             }
 
             try
@@ -160,7 +162,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                UseLemons();
+                return;
             }
 
             try
@@ -183,7 +187,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                UseSugar();
+                return;
             }
 
             try
@@ -206,7 +212,9 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-
+                Console.WriteLine("Invalid input.  Please enter a number.");
+                UseIceCubes();
+                return;
             }
             
             try
@@ -239,6 +247,7 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Not a valid input.  Please enter a price (ie. 1.00, .50, .25)");
                 SetLemonadePrice();
+                return;
             }
         }
 
