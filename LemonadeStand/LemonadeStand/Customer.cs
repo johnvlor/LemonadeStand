@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    public class Customer
     {
         Random random;
         public List<Customer> potentialCustomer;
-        public double buyProbability;
+        public List<Customer> purchasingCustomer;
+        public int lemonadeTypePreference;
 
-        public Customer(double buyProbability)
+        public Customer(int lemonadeTypePreference)
         {
             potentialCustomer = new List<Customer>();
-            SetCustomerPreference();
+            purchasingCustomer = new List<Customer>();
+            this.lemonadeTypePreference = lemonadeTypePreference;
         }
 
         public void DisplayPotentialCustomers()
@@ -23,10 +25,5 @@ namespace LemonadeStand
             Console.WriteLine("Customers: {0}", potentialCustomer.Count);
         }
 
-        public void SetCustomerPreference()
-        {
-            buyProbability = 100;
-
-        }
     }
 }

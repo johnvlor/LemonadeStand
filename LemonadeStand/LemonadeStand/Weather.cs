@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Weather
+    public class Weather
     {
         public int forecast;
-        int temperature;
+        public int temperature;
         public List<string> weatherForecast;
 
         public Weather()

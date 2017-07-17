@@ -10,11 +10,18 @@ namespace LemonadeStand
     {
         public List<Lemonade> cupsOfLemonade;
         private decimal lemonadePrice;
+        private int lemonadeType;
 
         public decimal LemonadePrice
         {
             get { return lemonadePrice; }
             set { lemonadePrice = value; }           
+        }
+
+        public int LemonadeType
+        {
+            get { return lemonadeType; }
+            set { lemonadeType = value; }
         }
 
         public Lemonade()

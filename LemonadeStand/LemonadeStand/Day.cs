@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Day
+    public class Day
     {
         public Weather weather;
         public Customer customer;
         int day;
         int noCustomer;
-        //int probability;
         int willingToBuy;
         int count;
 
-        public Day(Random random)
+        public Day()
         {
             weather = new Weather();
             customer = new Customer(0);
             day = 1;
             noCustomer = 0;
-            //probability = 0;
             willingToBuy = 0;
         }
 
@@ -44,6 +42,7 @@ namespace LemonadeStand
         public void StartDay(Random random)
         {
             GetDay();
+            GetTodaysWeather(random);
             GetCustomers(random);
             
         }
@@ -83,7 +82,7 @@ namespace LemonadeStand
             }
             else if (weather.weatherForecast[weather.forecast] == weather.weatherForecast[5])
             {
-                noCustomer = random.Next(70, 100);
+                noCustomer = random.Next(1, 30);
                 return noCustomer;
             }
             else
@@ -96,8 +95,13 @@ namespace LemonadeStand
         {
             for (int i = 0; i < noCustomers; i++)
             {
-                customer.potentialCustomer.Add(new Customer(random.Next(0,100)));
+                customer.potentialCustomer.Add(new Customer(random.Next(0,4)));
             }
+
+            //foreach (Customer x in customer.potentialCustomer)
+            //{
+            //    Console.WriteLine(x.lemonadeTypePreference);
+            //}
         }
 
         public void SellLemonade(Player playerOne, Random random)
@@ -109,7 +113,7 @@ namespace LemonadeStand
 
                 if (willingToBuy >= 5)
                 {
-                    Console.WriteLine(playerOne.lemonade.cupsOfLemonade.Count);
+                    //Console.WriteLine(playerOne.lemonade.cupsOfLemonade.Count);
                     playerOne.lemonade.cupsOfLemonade.RemoveAt(0);
                     playerOne.Profit = playerOne.Profit + playerOne.lemonade.LemonadePrice;
                     count += 1;
@@ -120,9 +124,9 @@ namespace LemonadeStand
                     break;
                 }
             }
-
             Console.WriteLine("Cups of Lemonade Sold: "+ count);
         }
 
+        
     }
 }

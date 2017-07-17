@@ -10,10 +10,62 @@ namespace LemonadeStand
     {
         int purchaseQty;
         decimal itemPrice;
+        decimal transactionAmount;
         
         public Store()
         {
 
+        }
+
+        public void BuyInventory(Player playerOne)
+        {
+            int playerInput = 0;
+
+            while (playerInput != 5)
+            {
+                Console.Write("\nWhat would you like to buy?" +
+                    "\n1. Cups" +
+                    "\n2. Lemons" +
+                    "\n3. Sugar" +
+                    "\n4. Ice cubes" +
+                    "\n5. Done with the store" +
+                    "\nPlease enter the option here: ");
+                playerInput = Int32.Parse(Console.ReadLine());
+
+                switch (playerInput)
+                {
+                    case 1:
+                        DisplayPriceOfCups();
+                        BuyCups(playerOne, playerInput);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
+                        break;
+                    case 2:
+                        DisplayPriceOfLemons();
+                        BuyLemons(playerOne, playerInput);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
+                        break;
+                    case 3:
+                        DisplayPriceOfSugar();
+                        BuySugar(playerOne, playerInput);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
+                        break;
+                    case 4:
+                        DisplayPriceOfIceCubes();
+                        BuyIceCubes(playerOne, playerInput);
+                        playerOne.DisplayMoney();
+                        playerOne.inventory.CheckInventory();
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
+                        BuyInventory(playerOne);
+                        break;
+                }
+            }
         }
 
         public void DisplayPriceOfCups()
@@ -30,10 +82,11 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            VerifyEnoughMoney(playerOne);
+            CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddCups(purchaseQty);
-            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
-            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
+
         }
 
         public void DisplayPriceOfLemons()
@@ -50,10 +103,10 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddLemons(purchaseQty);
-            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
-            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
+
         }
 
         public void DisplayPriceOfSugar()
@@ -70,10 +123,10 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddSugar(purchaseQty);
-            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
-            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
+
         }
 
         public void DisplayPriceOfIceCubes()
@@ -90,10 +143,10 @@ namespace LemonadeStand
             purchaseQty = Int32.Parse(Console.ReadLine());
 
             DeterminePrice(playerOne, playerInput);
+            CalculateBuyingExpense(playerOne);
 
             playerOne.inventory.AddIceCubes(purchaseQty);
-            playerOne.Money = playerOne.Money - (purchaseQty * itemPrice);
-            playerOne.Expense = playerOne.Expense + (purchaseQty * itemPrice);
+
         }
 
         public decimal DeterminePrice(Player playerOne, int playerInput)
@@ -171,6 +224,32 @@ namespace LemonadeStand
                 }
             }
             return default(decimal);
+        }
+
+
+        public decimal VerifyEnoughMoney(Player playerOne)
+        {
+            transactionAmount = 0m;
+
+            transactionAmount = purchaseQty * itemPrice;
+
+            if (transactionAmount > playerOne.Money)
+            {
+                Console.WriteLine("Sorry, not enough money.");
+                BuyInventory(playerOne);
+            }
+            else
+            {
+                return transactionAmount;
+            }
+            return default(decimal);
+        }
+
+        private void CalculateBuyingExpense(Player playerOne)
+        {
+            Console.WriteLine(transactionAmount);
+            playerOne.Expense = playerOne.Expense + transactionAmount;
+            playerOne.Money = playerOne.Money - transactionAmount;
         }
     }
 }

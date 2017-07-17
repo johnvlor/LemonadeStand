@@ -9,13 +9,13 @@ namespace LemonadeStand
     class Game
     {
         public Player playerOne;
-        private Day day;
+        public Day day;
         public Store store;
         Random random;
 
         public Game()
         {
-            day = new Day(random);
+            day = new Day();
             random = new Random();
             store = new Store();
         }
@@ -25,22 +25,25 @@ namespace LemonadeStand
             UserInterface.GetRules();
             GetPlayer();
             day.StartDay(random);
-            day.GetTodaysWeather(random);
+           //day.GetTodaysWeather(random);
             day.customer.DisplayPotentialCustomers();
             playerOne.DisplayMoney();
             playerOne.inventory.CheckInventory();
 
-            BuyInventory();
+            store.BuyInventory(playerOne);
 
             playerOne.DetermineIfUsingRecipe();
             playerOne.inventory.CheckInventory();
             playerOne.lemonade.DisplayCupsOfLemonade();
 
             playerOne.lemonade.SetLemonadePrice();
-            day.SellLemonade(playerOne, random);
+            playerOne.GetLemonadeType();
+            playerOne.BuyLemonade(day, random);
             //day.customer.DisplayCustomers();
             playerOne.lemonade.DisplayCupsOfLemonade();
-            playerOne.DisplayMoney();
+            GetProfit();
+            CalculateTotalRevenue();
+            playerOne.DisplayMoney();            
             UserInterface.DisplayProfit(playerOne);
             playerOne.inventory.CheckInventory();
         }
@@ -50,57 +53,66 @@ namespace LemonadeStand
             playerOne = new Human("player one");
         }
 
-        public void BuyInventory()
-        {
-            int playerInput = 0;
+        //public void BuyInventory()
+        //{
+        //    int playerInput = 0;
             
-            while (playerInput != 5)
-            {
-                Console.Write("\nWhat would you like to buy?" +
-                    "\n1. Cups" +
-                    "\n2. Lemons" +
-                    "\n3. Sugar" +
-                    "\n4. Ice cubes" +
-                    "\n5. Done with the store" +
-                    "\nPlease enter the option here: ");
-                playerInput = Int32.Parse(Console.ReadLine());
+        //    while (playerInput != 5)
+        //    {
+        //        Console.Write("\nWhat would you like to buy?" +
+        //            "\n1. Cups" +
+        //            "\n2. Lemons" +
+        //            "\n3. Sugar" +
+        //            "\n4. Ice cubes" +
+        //            "\n5. Done with the store" +
+        //            "\nPlease enter the option here: ");
+        //        playerInput = Int32.Parse(Console.ReadLine());
 
-                switch (playerInput)
-                {
-                    case 1:
-                        store.DisplayPriceOfCups();
-                        store.BuyCups(playerOne, playerInput);
-                        playerOne.DisplayMoney();
-                        playerOne.inventory.CheckInventory();
-                        break;
-                    case 2:
-                        store.DisplayPriceOfLemons();
-                        store.BuyLemons(playerOne, playerInput);
-                        playerOne.DisplayMoney();
-                        playerOne.inventory.CheckInventory();
-                        break;
-                    case 3:
-                        store.DisplayPriceOfSugar();
-                        store.BuySugar(playerOne, playerInput);
-                        playerOne.DisplayMoney();
-                        playerOne.inventory.CheckInventory();
-                        break;
-                    case 4:
-                        store.DisplayPriceOfIceCubes();
-                        store.BuyIceCubes(playerOne, playerInput);
-                        playerOne.DisplayMoney();
-                        playerOne.inventory.CheckInventory();
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
-                        BuyInventory();
-                        break;
-                }
-            }
+        //        switch (playerInput)
+        //        {
+        //            case 1:
+        //                store.DisplayPriceOfCups();
+        //                store.BuyCups(playerOne, playerInput);
+        //                playerOne.DisplayMoney();
+        //                playerOne.inventory.CheckInventory();
+        //                break;
+        //            case 2:
+        //                store.DisplayPriceOfLemons();
+        //                store.BuyLemons(playerOne, playerInput);
+        //                playerOne.DisplayMoney();
+        //                playerOne.inventory.CheckInventory();
+        //                break;
+        //            case 3:
+        //                store.DisplayPriceOfSugar();
+        //                store.BuySugar(playerOne, playerInput);
+        //                playerOne.DisplayMoney();
+        //                playerOne.inventory.CheckInventory();
+        //                break;
+        //            case 4:
+        //                store.DisplayPriceOfIceCubes();
+        //                store.BuyIceCubes(playerOne, playerInput);
+        //                playerOne.DisplayMoney();
+        //                playerOne.inventory.CheckInventory();
+        //                break;
+        //            case 5:
+        //                break;
+        //            default:
+        //                Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
+        //                BuyInventory();
+        //                break;
+        //        }
+        //    }
+        //}
+        
+        public void GetProfit()
+        {
+            playerOne.Profit = day.customer.purchasingCustomer.Count * playerOne.lemonade.LemonadePrice;
         }
 
+        public void CalculateTotalRevenue()
+        {
+            playerOne.TotalRevenue = playerOne.TotalRevenue + (playerOne.Profit - playerOne.Expense);
+        }
 
     }
 }
