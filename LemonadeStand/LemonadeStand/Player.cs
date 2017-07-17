@@ -16,7 +16,6 @@ namespace LemonadeStand
         public Inventory inventory;
         public Recipe recipe;
         public Lemonade lemonade;
-        //public int qty;
 
         public decimal Money
         {
@@ -69,7 +68,7 @@ namespace LemonadeStand
             profit = 0m;
         }
 
-        public void MakeLemonade()
+        public void MakeLemonadeWithoutRecipe()
         {
             Console.WriteLine("\nHow many cups of lemonade do you want to make?");
             UseCups();
@@ -79,29 +78,61 @@ namespace LemonadeStand
             UseIceCubes();
         }
 
-        public void DetermineIfUsingRecipe()
+        public void MakeLemonade()
         {
             string choice;
-            Console.WriteLine("Do you want to use Grandma's Recipe?  (Yes or No)");
+            Console.WriteLine("\nDo you want to use Grandma's Recipe?  (Yes or No)" +
+                "\nYes - use the recipe" +
+                "\nNo - make your own");
             choice = Console.ReadLine().ToLower();
 
             if (choice == "yes")
             {
                 MakeLemonadeWithRecipe(recipe);
             }
+            else if (choice == "no")
+            {
+                MakeLemonadeWithoutRecipe();
+            }
             else
             {
+                Console.WriteLine("Please try again.  Please enter only 'yes' or 'no'.");
                 MakeLemonade();
-            }
+            }           
         }
 
         public void MakeLemonadeWithRecipe(Recipe recipe)
         {
             UseCups();
             GetCupsOfLemonade();
-            inventory.lemon.lemons.RemoveRange(0, recipe.LemonQty);
-            inventory.sugar.sugar.RemoveRange(0, recipe.SugarQty);
-            inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
+            try
+            {
+                inventory.lemon.lemons.RemoveRange(0, recipe.LemonQty);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Not enough Lemons available.");
+                UseLemons();
+            }
+            try
+            {
+                inventory.sugar.sugar.RemoveRange(0, recipe.SugarQty);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Not enough Sugar available.");
+                UseSugar();
+            }
+            try
+            {
+                inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Not enough Ice Cubes available.");
+                UseIceCubes();
+            }
+
         }
 
         public void UseCups()
@@ -146,7 +177,7 @@ namespace LemonadeStand
             }
             catch (Exception)
             {
-                Console.WriteLine("Not enough Lemons available.");
+                Console.WriteLine("Not enough Sugar available.");
                 UseSugar();
             }
         }
@@ -161,7 +192,7 @@ namespace LemonadeStand
             }
             catch (Exception)
             {
-                Console.WriteLine("Not enough Lemons available.");
+                Console.WriteLine("Not enough Ice Cubes available.");
                 UseIceCubes();
             }
         }
@@ -172,6 +203,12 @@ namespace LemonadeStand
             {
                 lemonade.cupsOfLemonade.Add(new Lemonade());
             }
+        }
+
+        public void SetLemonadePrice()
+        {
+            Console.Write("\nSet your price per cup of lemonade: $");
+            lemonade.LemonadePrice = Convert.ToDecimal(Console.ReadLine());
         }
 
         public int GetLemonadeType()
@@ -364,11 +401,11 @@ namespace LemonadeStand
                 }
                 else if (lemonade.cupsOfLemonade.Count == 0)
                 {
-                    Console.WriteLine("Out of Stock");
+                    Console.WriteLine("\nSold Out for today");
                     break;
                 }
             }
-            Console.WriteLine("Cups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
+            Console.WriteLine("\nCups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
         }
     }
 }

@@ -32,15 +32,16 @@ namespace LemonadeStand
 
             store.BuyInventory(playerOne);
 
-            playerOne.DetermineIfUsingRecipe();
-            playerOne.inventory.CheckInventory();
+            playerOne.MakeLemonade();
+            //playerOne.inventory.CheckInventory();
             playerOne.lemonade.DisplayCupsOfLemonade();
 
-            playerOne.lemonade.SetLemonadePrice();
+            playerOne.SetLemonadePrice();
             playerOne.GetLemonadeType();
             playerOne.BuyLemonade(day, random);
             //day.customer.DisplayCustomers();
-            playerOne.lemonade.DisplayCupsOfLemonade();
+            //playerOne.lemonade.DisplayCupsOfLemonade();
+            day.GetDay();
             GetProfit();
             CalculateTotalRevenue();
             playerOne.DisplayMoney();            
@@ -53,57 +54,6 @@ namespace LemonadeStand
             playerOne = new Human("player one");
         }
 
-        //public void BuyInventory()
-        //{
-        //    int playerInput = 0;
-            
-        //    while (playerInput != 5)
-        //    {
-        //        Console.Write("\nWhat would you like to buy?" +
-        //            "\n1. Cups" +
-        //            "\n2. Lemons" +
-        //            "\n3. Sugar" +
-        //            "\n4. Ice cubes" +
-        //            "\n5. Done with the store" +
-        //            "\nPlease enter the option here: ");
-        //        playerInput = Int32.Parse(Console.ReadLine());
-
-        //        switch (playerInput)
-        //        {
-        //            case 1:
-        //                store.DisplayPriceOfCups();
-        //                store.BuyCups(playerOne, playerInput);
-        //                playerOne.DisplayMoney();
-        //                playerOne.inventory.CheckInventory();
-        //                break;
-        //            case 2:
-        //                store.DisplayPriceOfLemons();
-        //                store.BuyLemons(playerOne, playerInput);
-        //                playerOne.DisplayMoney();
-        //                playerOne.inventory.CheckInventory();
-        //                break;
-        //            case 3:
-        //                store.DisplayPriceOfSugar();
-        //                store.BuySugar(playerOne, playerInput);
-        //                playerOne.DisplayMoney();
-        //                playerOne.inventory.CheckInventory();
-        //                break;
-        //            case 4:
-        //                store.DisplayPriceOfIceCubes();
-        //                store.BuyIceCubes(playerOne, playerInput);
-        //                playerOne.DisplayMoney();
-        //                playerOne.inventory.CheckInventory();
-        //                break;
-        //            case 5:
-        //                break;
-        //            default:
-        //                Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
-        //                BuyInventory();
-        //                break;
-        //        }
-        //    }
-        //}
-        
         public void GetProfit()
         {
             playerOne.Profit = day.customer.purchasingCustomer.Count * playerOne.lemonade.LemonadePrice;

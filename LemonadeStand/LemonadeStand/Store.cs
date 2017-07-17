@@ -59,6 +59,7 @@ namespace LemonadeStand
                         playerOne.inventory.CheckInventory();
                         break;
                     case 5:
+                        Console.WriteLine("Thank you for shopping with us.  Come back again.");
                         break;
                     default:
                         Console.WriteLine("Invalid choice.  Please enter one of the options provided.");
@@ -226,13 +227,11 @@ namespace LemonadeStand
             return default(decimal);
         }
 
-
         public decimal VerifyEnoughMoney(Player playerOne)
         {
             transactionAmount = 0m;
 
             transactionAmount = purchaseQty * itemPrice;
-
             if (transactionAmount > playerOne.Money)
             {
                 Console.WriteLine("Sorry, not enough money.");
@@ -247,7 +246,6 @@ namespace LemonadeStand
 
         private void CalculateBuyingExpense(Player playerOne)
         {
-            Console.WriteLine(transactionAmount);
             playerOne.Expense = playerOne.Expense + transactionAmount;
             playerOne.Money = playerOne.Money - transactionAmount;
         }

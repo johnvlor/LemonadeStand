@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        Random random;
         public List<Customer> potentialCustomer;
         public List<Customer> purchasingCustomer;
         public int lemonadeTypePreference;

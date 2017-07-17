@@ -35,15 +35,9 @@ namespace LemonadeStand
             return lemonadePrice;
         }
 
-        public void SetLemonadePrice()
-        {
-            Console.Write("\nSet your price per cup of lemonade: $");
-            LemonadePrice = Convert.ToDecimal(Console.ReadLine());
-        }
-
         public void DisplayCupsOfLemonade()
         {
-            Console.WriteLine("Cups of Lemonade: {0}", cupsOfLemonade.Count);
+            Console.WriteLine("\nCups of Lemonade: {0}", cupsOfLemonade.Count);
         }
     }
 }
