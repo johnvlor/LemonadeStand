@@ -21,7 +21,7 @@ namespace LemonadeStand
             random = new Random();
             store = new Store();
             gameDays = new List<Day>();
-            noDays = 7;
+            noDays = 2;
         }
 
         public void PlayGame()
@@ -32,7 +32,9 @@ namespace LemonadeStand
 
             foreach (Day newGameDays in gameDays)
             {
-                Console.WriteLine("\nDay {0}", (gameDays.IndexOf(newGameDays)+1));
+                Console.WriteLine("\n-----------------------------");
+                Console.WriteLine("Day {0}", (gameDays.IndexOf(newGameDays)+1));
+                Console.WriteLine("-----------------------------");
                 day.StartDay(random);
 
                 UserInterface.DisplayMoney(playerOne);
@@ -49,20 +51,23 @@ namespace LemonadeStand
                 playerOne.BuyLemonade(day, random);
 
                 Console.WriteLine("\nEnd of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));
+                Console.WriteLine("-----------------------------");
                 GetProfit();
                 
-                //UserInterface.DisplayMoney(playerOne);
                 UserInterface.DisplayProfit(playerOne);
                 CalculateAccumulatedMoney();
                 UserInterface.DisplayMoney(playerOne);
                 playerOne.inventory.CheckInventory();
                 CalculateTotalRevenue();
+                CalculateTotalExpense();
                 ClearInventory(playerOne);
                 ClearCustomers();
                 ClearExpense();
             }
 
+            Console.WriteLine("\n{0}, here's your 7 day game report:", playerOne.GetName());
             UserInterface.DisplayRevenue(playerOne);
+            UserInterface.DisplayTotalExpense(playerOne);
         }
 
         public void GetPlayer()
@@ -86,6 +91,11 @@ namespace LemonadeStand
         public void CalculateTotalRevenue()
         {
             playerOne.TotalRevenue = playerOne.TotalRevenue + playerOne.Profit;
+        }
+
+        public void CalculateTotalExpense()
+        {
+            playerOne.TotalExpense = playerOne.TotalExpense + playerOne.Expense;
         }
 
         public void CalculateAccumulatedMoney()

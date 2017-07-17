@@ -13,6 +13,7 @@ namespace LemonadeStand
         private decimal expense;
         private decimal profit;
         private decimal totalRevenue;
+        private decimal totalExpense;
         public Inventory inventory;
         public Recipe recipe;
         public Lemonade lemonade;
@@ -39,6 +40,12 @@ namespace LemonadeStand
         {
             get { return totalRevenue; }
             set { totalRevenue = value; }
+        }
+
+        public decimal TotalExpense
+        {
+            get { return totalExpense; }
+            set { totalExpense = value; }
         }
 
         public Player()
