@@ -18,6 +18,16 @@ namespace LemonadeStand
             Console.WriteLine();
         }
 
+        public static void DisplayPotentialCustomers(Customer customer)
+        {
+            Console.WriteLine("\nPotential Customers coming through: {0}", customer.potentialCustomer.Count);
+        }
+
+        public static void DisplayStartInStore()
+        {
+            Console.WriteLine("\nWelcome to your local store, where we have everything you need.");
+        }
+
         public static void DisplayMoney(Player playerOne)
         {
             Console.WriteLine("\nCurrent Funds onhand");
@@ -63,12 +73,6 @@ namespace LemonadeStand
         {
             Console.WriteLine("  Total Net Loss: $({0})", decimal.Negate(playerOne.TotalNetProfit));
         }
-
-        public static void MainMenu(Player playerOne)
-        {
-            Console.WriteLine("Let's start with the store");
-        }
-
 
 
     }

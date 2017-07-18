@@ -34,29 +34,40 @@ namespace LemonadeStand
         {
             UserInterface.GetRules();
             GetPlayer();
-            GetNumberOfGameDays();
+            StartGamePlay();
+            EndOfGameReport();           
+            PlayAgain();
+        }
+
+        public void GetPlayer()
+        {
+            playerOne = new Human("player one");
+        }
+
+        public void StartGamePlay()
+        {
+            DetermineNumberofGameDays();
+            AddNumberOfGameDays();
 
             foreach (Day newGameDays in gameDays)
             {
                 Console.WriteLine("\n-----------------------------");
-                Console.WriteLine("Day {0}", (gameDays.IndexOf(newGameDays)+1));
+                Console.WriteLine("Day {0}", (gameDays.IndexOf(newGameDays) + 1));
                 Console.WriteLine("-----------------------------");
                 day.StartDay(random);
-
                 UserInterface.DisplayMoney(playerOne);
                 playerOne.inventory.CheckInventory();
-
+                UserInterface.DisplayStartInStore();
                 store.BuyInventory(playerOne);
-
                 playerOne.MakeLemonade();
                 playerOne.lemonade.DisplayCupsOfLemonade();
                 playerOne.SetLemonadePrice();
                 playerOne.GetLemonadeType();
-                day.customer.DisplayPotentialCustomers();
+                UserInterface.DisplayPotentialCustomers(day.customer);
                 playerOne.BuyLemonade(day, random);
                 Console.WriteLine("\n-----------------------------");
-                Console.WriteLine("End of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));                
-                CalculateProfit();                
+                Console.WriteLine("End of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));
+                CalculateProfit();
                 UserInterface.DisplayProfit(playerOne);
                 UserInterface.DisplayExpense(playerOne);
                 CalculateNetProfitLoss();
@@ -70,22 +81,33 @@ namespace LemonadeStand
                 ClearRemaningLemonade();
                 ClearExpense();
             }
+        }
 
+        public void EndOfGameReport()
+        {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("{0}, here's your {1} day game report:", playerOne.GetName(), gameDays.Count);
             UserInterface.DisplayTotalProfit(playerOne);
             UserInterface.DisplayTotalExpense(playerOne);
             CalculateTotalNetProfitLoss();
-
-            PlayAgain();
         }
 
-        public void GetPlayer()
+        public void DetermineNumberofGameDays()
         {
-            playerOne = new Human("player one");
+            Console.Write("\nPlease enter the number of days to play: ");
+            try
+            {
+                NoDays = Int32.Parse(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid choice.  Please enter a number.");
+                DetermineNumberofGameDays();
+                return;
+            }
         }
 
-        public void GetNumberOfGameDays()
+        public void AddNumberOfGameDays()
         {
             for (int i = 0; i < NoDays; i++)
             {

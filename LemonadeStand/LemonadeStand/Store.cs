@@ -101,12 +101,12 @@ namespace LemonadeStand
             DeterminePrice(playerOne, playerInput);
             CalculatePurchaseTransactionAmount();
 
-            if (playerOne.wallet.RemoveMoney(transactionAmount) == false)
+            if (playerOne.wallet.RemoveMoney(TransactionAmount) == false)
             {
                 BuyItems(playerOne, playerInput);
                 return;
             }
-
+            
             CalculateBuyingExpense(playerOne);
             playerOne.inventory.AddItems(playerInput, purchaseQty);
         }
@@ -223,7 +223,6 @@ namespace LemonadeStand
         public void CalculatePurchaseTransactionAmount()
         {
             TransactionAmount = 0m;
-
             TransactionAmount = purchaseQty * itemPrice;
         }
 

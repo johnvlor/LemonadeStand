@@ -19,10 +19,5 @@ namespace LemonadeStand
             this.lemonadeTypePreference = lemonadeTypePreference;
         }
 
-        public void DisplayPotentialCustomers()
-        {
-            Console.WriteLine("\nPotential Customers coming through: {0}", potentialCustomer.Count);
-        }
-
     }
 }

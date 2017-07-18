@@ -9,7 +9,6 @@ namespace LemonadeStand
     public class Player
     {
         protected string name;
-        //private decimal money;
         private decimal expense;
         private decimal profit;
         private decimal netProfit;
@@ -20,12 +19,6 @@ namespace LemonadeStand
         public Inventory inventory;
         public Recipe recipe;
         public Lemonade lemonade;
-
-        //public decimal Money
-        //{
-        //    get { return money; }
-        //    set { money = value; }
-        //}
 
         public decimal Expense
         {
@@ -69,7 +62,6 @@ namespace LemonadeStand
             inventory = new Inventory();
             recipe = new Recipe(4, 4, 4, 4);
             lemonade = new Lemonade();
-            //SetMoney();
             expense = 0m;
             profit = 0m;
         }
@@ -77,23 +69,6 @@ namespace LemonadeStand
         public string GetName()
         {
             return name;
-        }
-
-        public void SetMoney()
-        {
-            //money = 15.00m;
-            expense = 0m;
-            profit = 0m;
-        }
-
-        public void MakeLemonadeWithoutRecipe()
-        {
-            Console.WriteLine("\nHow many cups of lemonade do you want to make?");
-            UseCups();
-            GetCupsOfLemonade();
-            UseLemons();
-            UseSugar();
-            UseIceCubes();
         }
 
         public void MakeLemonade()
@@ -117,6 +92,16 @@ namespace LemonadeStand
                 Console.WriteLine("Please try again.  Please enter only 'yes' or 'no'.");
                 MakeLemonade();
             }           
+        }
+
+        public void MakeLemonadeWithoutRecipe()
+        {
+            Console.WriteLine("\nHow many cups of lemonade do you want to make?");
+            UseCups();
+            GetCupsOfLemonade();
+            UseLemons();
+            UseSugar();
+            UseIceCubes();
         }
 
         public void MakeLemonadeWithRecipe(Recipe recipe)
