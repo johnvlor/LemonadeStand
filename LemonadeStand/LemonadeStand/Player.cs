@@ -9,22 +9,23 @@ namespace LemonadeStand
     public class Player
     {
         protected string name;
-        private decimal money;
+        //private decimal money;
         private decimal expense;
         private decimal profit;
         private decimal netProfit;
         private decimal totalProfit;
         private decimal totalExpense;
         private decimal totalNetProfit;
+        public Wallet wallet;
         public Inventory inventory;
         public Recipe recipe;
         public Lemonade lemonade;
 
-        public decimal Money
-        {
-            get { return money; }
-            set { money = value; }
-        }
+        //public decimal Money
+        //{
+        //    get { return money; }
+        //    set { money = value; }
+        //}
 
         public decimal Expense
         {
@@ -64,10 +65,13 @@ namespace LemonadeStand
 
         public Player()
         {
+            wallet = new Wallet();
             inventory = new Inventory();
             recipe = new Recipe(4, 4, 4, 4);
             lemonade = new Lemonade();
-            SetMoney();
+            //SetMoney();
+            expense = 0m;
+            profit = 0m;
         }
 
         public string GetName()
@@ -77,7 +81,7 @@ namespace LemonadeStand
 
         public void SetMoney()
         {
-            money = 15.00m;
+            //money = 15.00m;
             expense = 0m;
             profit = 0m;
         }

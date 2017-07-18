@@ -21,7 +21,7 @@ namespace LemonadeStand
         public static void DisplayMoney(Player playerOne)
         {
             Console.WriteLine("\nCurrent Funds onhand");
-            Console.WriteLine("Money: ${0}", playerOne.Money);
+            Console.WriteLine("Money: ${0}", playerOne.wallet.Money);
         }
 
         public static void DisplayExpense(Player playerOne)

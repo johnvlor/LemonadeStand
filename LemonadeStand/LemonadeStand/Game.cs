@@ -27,7 +27,7 @@ namespace LemonadeStand
             random = new Random();
             store = new Store();
             gameDays = new List<Day>();
-            noDays = 2;
+            noDays = 7;
         }
 
         public void PlayGame()
@@ -124,7 +124,7 @@ namespace LemonadeStand
 
         public void CalculateAccumulatedMoney()
         {
-            playerOne.Money = playerOne.Money + playerOne.Profit;
+            playerOne.wallet.Money = playerOne.wallet.Money + playerOne.Profit;
         }
 
         public void CalculateTotalNetProfitLoss()

@@ -84,14 +84,6 @@ namespace LemonadeStand
             }
         }
 
-        public void DisplayPriceOfCups()
-        {
-            Console.WriteLine("\nCups");
-            Console.WriteLine("1 for $0.05 each");
-            Console.WriteLine("15 or more for $0.04 each");
-            Console.WriteLine("30 or more for $0.03 each");
-        }
-
         public void BuyItems(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
@@ -107,9 +99,24 @@ namespace LemonadeStand
             }
 
             DeterminePrice(playerOne, playerInput);
-            VerifyEnoughMoney(playerOne);
+            CalculatePurchaseTransactionAmount();
+
+            if (playerOne.wallet.RemoveMoney(transactionAmount) == false)
+            {
+                BuyItems(playerOne, playerInput);
+                return;
+            }
+
             CalculateBuyingExpense(playerOne);
             playerOne.inventory.AddItems(playerInput, purchaseQty);
+        }
+
+        public void DisplayPriceOfCups()
+        {
+            Console.WriteLine("\nCups");
+            Console.WriteLine("1 for $0.05 each");
+            Console.WriteLine("15 or more for $0.04 each");
+            Console.WriteLine("30 or more for $0.03 each");
         }
 
         public void DisplayPriceOfLemons()
@@ -213,16 +220,11 @@ namespace LemonadeStand
             return default(decimal);
         }
 
-        public void VerifyEnoughMoney(Player playerOne)
+        public void CalculatePurchaseTransactionAmount()
         {
             TransactionAmount = 0m;
 
             TransactionAmount = purchaseQty * itemPrice;
-            if (TransactionAmount > playerOne.Money)
-            {
-                Console.WriteLine("Sorry, not enough money.");
-                BuyInventory(playerOne);
-            }
         }
 
         public void DisplayTransactionAmount()
@@ -233,7 +235,6 @@ namespace LemonadeStand
         private void CalculateBuyingExpense(Player playerOne)
         {
             playerOne.Expense = playerOne.Expense + TransactionAmount;
-            playerOne.Money = playerOne.Money - TransactionAmount;
         }
     }
 }
