@@ -30,35 +30,35 @@ namespace LemonadeStand
             iceCubes.DisplayIceCubes();           
         }
 
-        public void AddCups(int purchaseQty)
+        public void AddItems(int playerInput, int purchaseQty)
         {
-            for (int i = 0; i < purchaseQty; i++)
+            if (playerInput == 1)
             {
-                cup.cups.Add(new Cup());
+                for (int i = 0; i < purchaseQty; i++)
+                {
+                    cup.cups.Add(new Cup());
+                }
             }
-        }
-
-        public void AddLemons(int purchaseQty)
-        {
-            for (int i = 0; i < purchaseQty; i++)
+            else if (playerInput == 2)
             {
-                lemon.lemons.Add(new Lemon());
+                for (int i = 0; i < purchaseQty; i++)
+                {
+                    lemon.lemons.Add(new Lemon());
+                }
             }
-        }
-
-        public void AddSugar(int purchaseQty)
-        {
-            for (int i = 0; i < purchaseQty; i++)
+            else if (playerInput == 3)
             {
-                sugar.sugar.Add(new Sugar());
+                for (int i = 0; i < purchaseQty; i++)
+                {
+                    sugar.sugar.Add(new Sugar());
+                }
             }
-        }
-
-        public void AddIceCubes(int purchaseQty)
-        {
-            for (int i = 0; i < purchaseQty; i++)
+            else if (playerInput == 4)
             {
-                iceCubes.iceCubes.Add(new IceCube());
+                for (int i = 0; i < purchaseQty; i++)
+                {
+                    iceCubes.iceCubes.Add(new IceCube());
+                }
             }
         }
     }

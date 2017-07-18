@@ -13,7 +13,13 @@ namespace LemonadeStand
         public Store store;
         Random random;
         public List<Day> gameDays;
-        int noDays;
+        private int noDays;
+
+        public int NoDays
+        {
+            get { return noDays; }
+            set { noDays = value; }
+        }
 
         public Game()
         {
@@ -68,8 +74,7 @@ namespace LemonadeStand
             Console.WriteLine("{0}, here's your 7 day game report:", playerOne.GetName());
             UserInterface.DisplayTotalProfit(playerOne);
             UserInterface.DisplayTotalExpense(playerOne);
-            CalculateNetProfitLoss();
-
+            CalculateTotalNetProfitLoss();
         }
 
         public void GetPlayer()
@@ -79,7 +84,7 @@ namespace LemonadeStand
 
         public void GetNumberOfGameDays()
         {
-            for (int i = 0; i < noDays; i++)
+            for (int i = 0; i < NoDays; i++)
             {
                 gameDays.Add(new Day());
             }

@@ -471,7 +471,7 @@ namespace LemonadeStand
 
         public void DisplayLemonadeSold(Day day)
         {
-            Console.WriteLine("\nCups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
+            Console.WriteLine("Cups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
         }
     }
 }

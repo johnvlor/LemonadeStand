@@ -26,42 +26,42 @@ namespace LemonadeStand
 
         public static void DisplayExpense(Player playerOne)
         {
-            Console.WriteLine("Expense: ${0}", playerOne.Expense);
+            Console.WriteLine("  Expense: ${0}", playerOne.Expense);
         }
 
         public static void DisplayProfit(Player playerOne)
         {
-            Console.WriteLine("Profit: ${0}", playerOne.Profit);
+            Console.WriteLine("  Profit: ${0}", playerOne.Profit);
         }
 
         public static void DisplayNetProfit(Player playerOne)
         {
-            Console.WriteLine("Today you made a net profit: ${0}", playerOne.NetProfit);
+            Console.WriteLine("  Today you made a net profit: ${0}", playerOne.NetProfit);
         }
 
         public static void DisplayNetLoss(Player playerOne)
         {
-            Console.WriteLine("Today you had a net loss: $({0})", playerOne.NetProfit);
+            Console.WriteLine("  Today you had a net loss: $({0})", playerOne.NetProfit);
         }
 
         public static void DisplayTotalProfit(Player playerOne)
         {
-            Console.WriteLine("Total Profit: ${0}", playerOne.TotalProfit);
+            Console.WriteLine("  Total Profit: ${0}", playerOne.TotalProfit);
         }
 
         public static void DisplayTotalExpense(Player playerOne)
         {
-            Console.WriteLine("Total Expense: ${0}", playerOne.TotalExpense);
+            Console.WriteLine("  Total Expense: ${0}", playerOne.TotalExpense);
         }
 
         public static void DisplayTotalNetProfit(Player playerOne)
         {
-            Console.WriteLine("Total Net Profit: ${0}", playerOne.TotalNetProfit);
+            Console.WriteLine("  Total Net Profit: ${0}", playerOne.TotalNetProfit);
         }
 
         public static void DisplayTotalNetLoss(Player playerOne)
         {
-            Console.WriteLine("Total Net Loss: $({0})", playerOne.TotalNetProfit);
+            Console.WriteLine("  Total Net Loss: $({0})", playerOne.TotalNetProfit);
         }
 
         public static void MainMenu(Player playerOne)

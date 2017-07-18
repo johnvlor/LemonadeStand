@@ -21,7 +21,7 @@ namespace LemonadeStand
 
         public void DisplayPotentialCustomers()
         {
-            Console.WriteLine("Potential Customers coming through: {0}", potentialCustomer.Count);
+            Console.WriteLine("\nPotential Customers coming through: {0}", potentialCustomer.Count);
         }
 
     }

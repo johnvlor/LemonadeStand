@@ -47,28 +47,28 @@ namespace LemonadeStand
                 {
                     case 1:
                         DisplayPriceOfCups();
-                        BuyCups(playerOne, playerInput);
+                        BuyItems(playerOne, playerInput);
                         DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);                        
                         playerOne.inventory.CheckInventory();
                         break;
                     case 2:
                         DisplayPriceOfLemons();
-                        BuyLemons(playerOne, playerInput);
+                        BuyItems(playerOne, playerInput);
                         DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 3:
                         DisplayPriceOfSugar();
-                        BuySugar(playerOne, playerInput);
+                        BuyItems(playerOne, playerInput);
                         DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 4:
                         DisplayPriceOfIceCubes();
-                        BuyIceCubes(playerOne, playerInput);
+                        BuyItems(playerOne, playerInput);
                         DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
                         playerOne.inventory.CheckInventory();
@@ -92,7 +92,7 @@ namespace LemonadeStand
             Console.WriteLine("30 or more for $0.03 each");
         }
 
-        public void BuyCups(Player playerOne, int playerInput)
+        public void BuyItems(Player playerOne, int playerInput)
         {
             Console.Write("How many would you like to buy? ");
             try
@@ -102,16 +102,14 @@ namespace LemonadeStand
             catch (FormatException)
             {
                 Console.WriteLine("Invalid input.  Please enter a number.");
-                BuyCups(playerOne, playerInput);
+                BuyItems(playerOne, playerInput);
                 return;
             }
 
             DeterminePrice(playerOne, playerInput);
             VerifyEnoughMoney(playerOne);
             CalculateBuyingExpense(playerOne);
-
-            playerOne.inventory.AddCups(purchaseQty);
-
+            playerOne.inventory.AddItems(playerInput, purchaseQty);
         }
 
         public void DisplayPriceOfLemons()
@@ -122,28 +120,6 @@ namespace LemonadeStand
             Console.WriteLine("30 or more for $0.05 each");
         }
 
-        public void BuyLemons(Player playerOne, int playerInput)
-        {
-            Console.Write("How many would you like to buy? ");
-            try
-            {
-                purchaseQty = Int32.Parse(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid input.  Please enter a number.");
-                BuyLemons(playerOne, playerInput);
-                return;
-            }
-
-            DeterminePrice(playerOne, playerInput);
-            VerifyEnoughMoney(playerOne);
-            CalculateBuyingExpense(playerOne);
-
-            playerOne.inventory.AddLemons(purchaseQty);
-
-        }
-
         public void DisplayPriceOfSugar()
         {
             Console.WriteLine("\nSugar");
@@ -152,55 +128,12 @@ namespace LemonadeStand
             Console.WriteLine("20 cups or more for $0.04 each");
         }
 
-        public void BuySugar(Player playerOne, int playerInput)
-        {
-            Console.Write("How many would you like to buy? ");
-            try
-            {
-                purchaseQty = Int32.Parse(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid input.  Please enter a number.");
-                BuySugar(playerOne, playerInput);
-                return;
-            }
-
-            DeterminePrice(playerOne, playerInput);
-            VerifyEnoughMoney(playerOne);
-            CalculateBuyingExpense(playerOne);
-
-            playerOne.inventory.AddSugar(purchaseQty);
-
-        }
-
         public void DisplayPriceOfIceCubes()
         {
             Console.WriteLine("\nIce Cubes");
             Console.WriteLine("1 for $0.03 each");
             Console.WriteLine("100 or more for $0.02 each");
             Console.WriteLine("200 or more for $0.01 each");
-        }
-
-        public void BuyIceCubes(Player playerOne, int playerInput)
-        {
-            Console.Write("How many would you like to buy? ");
-            try
-            {
-                purchaseQty = Int32.Parse(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid input.  Please enter a number.");
-                BuyIceCubes(playerOne, playerInput);
-                return;
-            }
-
-            DeterminePrice(playerOne, playerInput);
-            VerifyEnoughMoney(playerOne);
-            CalculateBuyingExpense(playerOne);
-
-            playerOne.inventory.AddIceCubes(purchaseQty);
         }
 
         public decimal DeterminePrice(Player playerOne, int playerInput)
@@ -290,7 +223,6 @@ namespace LemonadeStand
                 Console.WriteLine("Sorry, not enough money.");
                 BuyInventory(playerOne);
             }
-
         }
 
         public void DisplayTransactionAmount()
