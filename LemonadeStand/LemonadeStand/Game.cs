@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Game
+    public class Game
     {
         public Player playerOne;
         public Day day;
@@ -67,14 +67,17 @@ namespace LemonadeStand
                 CalculateTotalExpense();
                 ClearInventory(playerOne);
                 ClearCustomers();
+                ClearRemaningLemonade();
                 ClearExpense();
             }
 
             Console.WriteLine("\n-----------------------------");
-            Console.WriteLine("{0}, here's your 7 day game report:", playerOne.GetName());
+            Console.WriteLine("{0}, here's your {1} day game report:", playerOne.GetName(), gameDays.Count);
             UserInterface.DisplayTotalProfit(playerOne);
             UserInterface.DisplayTotalExpense(playerOne);
             CalculateTotalNetProfitLoss();
+
+            PlayAgain();
         }
 
         public void GetPlayer()
@@ -155,5 +158,33 @@ namespace LemonadeStand
             day.customer.purchasingCustomer.Clear();
         }
 
+        public void ClearRemaningLemonade()
+        {
+            playerOne.lemonade.cupsOfLemonade.Clear();
+        }
+        
+        public void ClearDaysToReplay()
+        {
+            gameDays.Clear();
+        }
+
+        public void PlayAgain()
+        {
+            string userInput;
+
+            Console.WriteLine("\nPlay Again? (Yes or No)");
+            userInput = Console.ReadLine().ToLower();
+
+            if (userInput == "yes")
+            {
+                ClearDaysToReplay();
+                Console.Clear();
+                PlayGame();
+            }
+            else
+            {
+                Console.WriteLine("Have a Nice Day.");
+            }
+        }
     }
 }

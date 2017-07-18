@@ -41,7 +41,7 @@ namespace LemonadeStand
 
         public static void DisplayNetLoss(Player playerOne)
         {
-            Console.WriteLine("  Today you had a net loss: $({0})", playerOne.NetProfit);
+            Console.WriteLine("  Today you had a net loss: $({0})", decimal.Negate(playerOne.NetProfit));
         }
 
         public static void DisplayTotalProfit(Player playerOne)
@@ -61,7 +61,7 @@ namespace LemonadeStand
 
         public static void DisplayTotalNetLoss(Player playerOne)
         {
-            Console.WriteLine("  Total Net Loss: $({0})", playerOne.TotalNetProfit);
+            Console.WriteLine("  Total Net Loss: $({0})", decimal.Negate(playerOne.TotalNetProfit));
         }
 
         public static void MainMenu(Player playerOne)
