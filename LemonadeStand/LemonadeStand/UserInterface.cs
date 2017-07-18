@@ -18,11 +18,6 @@ namespace LemonadeStand
             Console.WriteLine();
         }
 
-        public static void DisplayPotentialCustomers(Customer customer)
-        {
-            Console.WriteLine("\nPotential Customers coming through: {0}", customer.potentialCustomer.Count);
-        }
-
         public static void DisplayStartInStore()
         {
             Console.WriteLine("\nWelcome to your local store, where we have everything you need.");
@@ -74,6 +69,9 @@ namespace LemonadeStand
             Console.WriteLine("  Total Net Loss: $({0})", decimal.Negate(playerOne.TotalNetProfit));
         }
 
-
+        public static void DisplayPotentialCustomers(Customer customer)
+        {
+            Console.WriteLine("\nPotential Customers coming through: {0}", customer.potentialCustomer.Count);
+        }
     }
 }

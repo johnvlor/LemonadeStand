@@ -37,7 +37,15 @@ namespace LemonadeStand
 
         public void DisplayCupsOfLemonade()
         {
-            Console.WriteLine("\nCups of Lemonade: {0}", cupsOfLemonade.Count);
+            Console.WriteLine("\nCups of Lemonade Made: {0}", cupsOfLemonade.Count);
+        }
+
+        public void AddCupsOfLemonade(Recipe recipe)
+        {
+            for (int i = 0; i < recipe.CupQty; i++)
+            {
+                cupsOfLemonade.Add(new Lemonade());
+            }
         }
     }
 }

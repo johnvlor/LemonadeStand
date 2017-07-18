@@ -74,7 +74,8 @@ namespace LemonadeStand
         public void MakeLemonade()
         {
             string choice;
-            Console.WriteLine("\nDo you want to use Grandma's Recipe?  (Yes or No)" +
+            Console.WriteLine("\nLet's make some Lemonade.");
+            Console.WriteLine("Do you want to use Grandma's Recipe?  (Yes or No)" +
                 "\nYes - use the recipe" +
                 "\nNo - make your own");
             choice = Console.ReadLine().ToLower();
@@ -97,45 +98,20 @@ namespace LemonadeStand
         public void MakeLemonadeWithoutRecipe()
         {
             Console.WriteLine("\nHow many cups of lemonade do you want to make?");
-            UseCups();
-            GetCupsOfLemonade();
+            UseCups();           
             UseLemons();
             UseSugar();
             UseIceCubes();
+            lemonade.AddCupsOfLemonade(recipe);
         }
 
         public void MakeLemonadeWithRecipe(Recipe recipe)
         {
             UseCups();
-            GetCupsOfLemonade();
-            try
-            {
-                inventory.lemon.lemons.RemoveRange(0, recipe.LemonQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Lemons available.");
-                UseLemons();
-            }
-            try
-            {
-                inventory.sugar.sugar.RemoveRange(0, recipe.SugarQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Sugar available.");
-                UseSugar();
-            }
-            try
-            {
-                inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Ice Cubes available.");
-                UseIceCubes();
-            }
-
+            inventory.RemoveLemons(recipe);
+            inventory.RemoveSugar(recipe);
+            inventory.RemoveIceCubes(recipe);
+            lemonade.AddCupsOfLemonade(recipe);
         }
 
         public void UseCups()
@@ -152,15 +128,7 @@ namespace LemonadeStand
                 return;
             }
 
-            try
-            {
-                inventory.cup.cups.RemoveRange(0, recipe.CupQty);
-            }
-            catch(Exception)
-            {
-                Console.WriteLine("Not enough Cups available.");
-                UseCups();
-            }
+            inventory.RemoveCups(recipe);
         }
 
         public void UseLemons()
@@ -177,15 +145,7 @@ namespace LemonadeStand
                 return;
             }
 
-            try
-            {
-                inventory.lemon.lemons.RemoveRange(0, recipe.LemonQty);
-            }
-            catch(Exception)
-            {
-                Console.WriteLine("Not enough Lemons available.");
-                UseLemons();
-            }
+            inventory.RemoveLemons(recipe);
         }
 
         public void UseSugar()
@@ -202,15 +162,7 @@ namespace LemonadeStand
                 return;
             }
 
-            try
-            {
-                inventory.sugar.sugar.RemoveRange(0, recipe.SugarQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Sugar available.");
-                UseSugar();
-            }
+            inventory.RemoveSugar(recipe);
         }
 
         public void UseIceCubes()
@@ -226,16 +178,8 @@ namespace LemonadeStand
                 UseIceCubes();
                 return;
             }
-            
-            try
-            {
-                inventory.iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Ice Cubes available.");
-                UseIceCubes();
-            }
+
+            inventory.RemoveIceCubes(recipe);
         }
 
         public void GetCupsOfLemonade()
