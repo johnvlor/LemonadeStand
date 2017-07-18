@@ -48,29 +48,29 @@ namespace LemonadeStand
                     case 1:
                         DisplayPriceOfCups();
                         BuyCups(playerOne, playerInput);
-                        UserInterface.DisplayMoney(playerOne);
-                        UserInterface.DisplayExpense(playerOne);
+                        DisplayTransactionAmount();
+                        UserInterface.DisplayMoney(playerOne);                        
                         playerOne.inventory.CheckInventory();
                         break;
                     case 2:
                         DisplayPriceOfLemons();
                         BuyLemons(playerOne, playerInput);
+                        DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
-                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 3:
                         DisplayPriceOfSugar();
                         BuySugar(playerOne, playerInput);
+                        DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
-                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 4:
                         DisplayPriceOfIceCubes();
                         BuyIceCubes(playerOne, playerInput);
+                        DisplayTransactionAmount();
                         UserInterface.DisplayMoney(playerOne);
-                        UserInterface.DisplayExpense(playerOne);
                         playerOne.inventory.CheckInventory();
                         break;
                     case 5:
@@ -293,9 +293,13 @@ namespace LemonadeStand
 
         }
 
+        public void DisplayTransactionAmount()
+        {
+            Console.WriteLine("Transaction Amount: ${0}", TransactionAmount);
+        }
+
         private void CalculateBuyingExpense(Player playerOne)
         {
-            Console.WriteLine("transaction amount "+TransactionAmount);
             playerOne.Expense = playerOne.Expense + TransactionAmount;
             playerOne.Money = playerOne.Money - TransactionAmount;
         }

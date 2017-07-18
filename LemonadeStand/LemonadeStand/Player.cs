@@ -12,8 +12,10 @@ namespace LemonadeStand
         private decimal money;
         private decimal expense;
         private decimal profit;
-        private decimal totalRevenue;
+        private decimal netProfit;
+        private decimal totalProfit;
         private decimal totalExpense;
+        private decimal totalNetProfit;
         public Inventory inventory;
         public Recipe recipe;
         public Lemonade lemonade;
@@ -36,16 +38,28 @@ namespace LemonadeStand
             set { profit = value; }
         }
 
-        public decimal TotalRevenue
+        public decimal TotalProfit
         {
-            get { return totalRevenue; }
-            set { totalRevenue = value; }
+            get { return totalProfit; }
+            set { totalProfit = value; }
         }
 
         public decimal TotalExpense
         {
             get { return totalExpense; }
             set { totalExpense = value; }
+        }
+
+        public decimal NetProfit
+        {
+            get { return netProfit; }
+            set { netProfit = value; }
+        }
+
+        public decimal TotalNetProfit
+        {
+            get { return totalNetProfit; }
+            set { totalNetProfit = value; }
         }
 
         public Player()
@@ -452,6 +466,11 @@ namespace LemonadeStand
                     break;
                 }
             }
+            DisplayLemonadeSold(day);
+        }
+
+        public void DisplayLemonadeSold(Day day)
+        {
             Console.WriteLine("\nCups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
         }
     }

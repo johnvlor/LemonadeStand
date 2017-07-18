@@ -44,30 +44,32 @@ namespace LemonadeStand
 
                 playerOne.MakeLemonade();
                 playerOne.lemonade.DisplayCupsOfLemonade();
-
                 playerOne.SetLemonadePrice();
                 playerOne.GetLemonadeType();
                 day.customer.DisplayPotentialCustomers();
                 playerOne.BuyLemonade(day, random);
-
-                Console.WriteLine("\nEnd of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));
-                Console.WriteLine("-----------------------------");
-                GetProfit();
-                
+                Console.WriteLine("\n-----------------------------");
+                Console.WriteLine("End of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));                
+                CalculateProfit();                
                 UserInterface.DisplayProfit(playerOne);
+                UserInterface.DisplayExpense(playerOne);
+                CalculateNetProfitLoss();
                 CalculateAccumulatedMoney();
                 UserInterface.DisplayMoney(playerOne);
                 playerOne.inventory.CheckInventory();
-                CalculateTotalRevenue();
+                CalculateTotalProfit();
                 CalculateTotalExpense();
                 ClearInventory(playerOne);
                 ClearCustomers();
                 ClearExpense();
             }
 
-            Console.WriteLine("\n{0}, here's your 7 day game report:", playerOne.GetName());
-            UserInterface.DisplayRevenue(playerOne);
+            Console.WriteLine("\n-----------------------------");
+            Console.WriteLine("{0}, here's your 7 day game report:", playerOne.GetName());
+            UserInterface.DisplayTotalProfit(playerOne);
             UserInterface.DisplayTotalExpense(playerOne);
+            CalculateNetProfitLoss();
+
         }
 
         public void GetPlayer()
@@ -83,14 +85,28 @@ namespace LemonadeStand
             }
         }
 
-        public void GetProfit()
+        public void CalculateProfit()
         {
-            playerOne.Profit = day.customer.purchasingCustomer.Count * playerOne.lemonade.LemonadePrice;
+            playerOne.Profit = day.customer.purchasingCustomer.Count * playerOne.lemonade.LemonadePrice;            
         }
 
-        public void CalculateTotalRevenue()
+        public void CalculateNetProfitLoss()
         {
-            playerOne.TotalRevenue = playerOne.TotalRevenue + playerOne.Profit;
+            playerOne.NetProfit = playerOne.Profit - playerOne.Expense;
+
+            if (playerOne.NetProfit < 0)
+            {
+                UserInterface.DisplayNetLoss(playerOne);
+            }
+            else if (playerOne.NetProfit >= 0)
+            {
+                UserInterface.DisplayNetProfit(playerOne);
+            }
+        }
+
+        public void CalculateTotalProfit()
+        {
+            playerOne.TotalProfit = playerOne.TotalProfit + playerOne.Profit;
         }
 
         public void CalculateTotalExpense()
@@ -103,9 +119,23 @@ namespace LemonadeStand
             playerOne.Money = playerOne.Money + playerOne.Profit;
         }
 
+        public void CalculateTotalNetProfitLoss()
+        {            
+            playerOne.TotalNetProfit = playerOne.TotalProfit - playerOne.TotalExpense;
+
+            if (playerOne.TotalNetProfit < 0)
+            {
+                UserInterface.DisplayTotalNetLoss(playerOne);
+            }
+            else if (playerOne.TotalNetProfit >= 0)
+            {
+                UserInterface.DisplayTotalNetProfit(playerOne);
+            }
+        }
+
         public void ClearInventory(Player playerOne)
         {
-            Console.WriteLine("Ice Cubes have melted");
+            Console.WriteLine("The remaining Ice Cubes have melted");
             playerOne.inventory.iceCubes.iceCubes.Clear();
         }
 

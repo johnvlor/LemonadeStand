@@ -31,12 +31,22 @@ namespace LemonadeStand
 
         public static void DisplayProfit(Player playerOne)
         {
-            Console.WriteLine("Today's Profit: ${0}", playerOne.Profit);
+            Console.WriteLine("Profit: ${0}", playerOne.Profit);
         }
 
-        public static void DisplayRevenue(Player playerOne)
+        public static void DisplayNetProfit(Player playerOne)
         {
-            Console.WriteLine("Total Revenue: ${0}", playerOne.TotalRevenue);
+            Console.WriteLine("Today you made a net profit: ${0}", playerOne.NetProfit);
+        }
+
+        public static void DisplayNetLoss(Player playerOne)
+        {
+            Console.WriteLine("Today you had a net loss: $({0})", playerOne.NetProfit);
+        }
+
+        public static void DisplayTotalProfit(Player playerOne)
+        {
+            Console.WriteLine("Total Profit: ${0}", playerOne.TotalProfit);
         }
 
         public static void DisplayTotalExpense(Player playerOne)
@@ -44,9 +54,19 @@ namespace LemonadeStand
             Console.WriteLine("Total Expense: ${0}", playerOne.TotalExpense);
         }
 
+        public static void DisplayTotalNetProfit(Player playerOne)
+        {
+            Console.WriteLine("Total Net Profit: ${0}", playerOne.TotalNetProfit);
+        }
+
+        public static void DisplayTotalNetLoss(Player playerOne)
+        {
+            Console.WriteLine("Total Net Loss: $({0})", playerOne.TotalNetProfit);
+        }
+
         public static void MainMenu(Player playerOne)
         {
-
+            Console.WriteLine("Let's start with the store");
         }
 
 
