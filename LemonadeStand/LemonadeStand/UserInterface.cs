@@ -73,5 +73,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nPotential Customers coming through: {0}", customer.potentialCustomer.Count);
         }
+
+        public static void DisplayLemonadeSold(Day day)
+        {
+            Console.WriteLine("Cups of Lemonade Sold: " + day.customer.purchasingCustomer.Count);
+        }
     }
 }

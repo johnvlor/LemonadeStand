@@ -10,13 +10,19 @@ namespace LemonadeStand
     {
         public List<Customer> potentialCustomer;
         public List<Customer> purchasingCustomer;
-        public int lemonadeTypePreference;
+        private int lemonadeTypePreference;
 
-        public Customer(int lemonadeTypePreference)
+        public int LemonadeTypePreference
+        {
+            get { return lemonadeTypePreference; }
+            set { lemonadeTypePreference = value; }
+        }
+
+        public Customer(int LemonadeTypePreference)
         {
             potentialCustomer = new List<Customer>();
             purchasingCustomer = new List<Customer>();
-            this.lemonadeTypePreference = lemonadeTypePreference;
+            this.LemonadeTypePreference = LemonadeTypePreference;
         }
 
     }

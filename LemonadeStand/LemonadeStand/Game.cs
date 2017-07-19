@@ -63,7 +63,8 @@ namespace LemonadeStand
                 playerOne.lemonade.DisplayCupsOfLemonade();
                 playerOne.SetLemonadePrice();
                 UserInterface.DisplayPotentialCustomers(day.customer);
-                playerOne.BuyLemonade(day, random);
+                playerOne.SellLemonade(day, random);
+                UserInterface.DisplayLemonadeSold(day);
                 Console.WriteLine("\n-----------------------------");
                 Console.WriteLine("End of Day {0} Report", (gameDays.IndexOf(newGameDays) + 1));
                 CalculateProfit();

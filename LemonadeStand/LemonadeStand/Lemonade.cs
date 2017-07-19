@@ -64,5 +64,10 @@ namespace LemonadeStand
                 LemonadeType = 3;
             }
         }
+
+        public void RemoveLemonade()
+        {
+            cupsOfLemonade.RemoveAt(0);
+        }
     }
 }
