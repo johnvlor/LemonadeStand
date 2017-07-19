@@ -35,7 +35,7 @@ namespace LemonadeStand
             UserInterface.GetRules();
             GetPlayer();
             StartGamePlay();
-            EndGamePlayReport();           
+            EndGamePlayReport();
             PlayAgain();
         }
 
@@ -203,10 +203,16 @@ namespace LemonadeStand
                 Console.Clear();
                 PlayGame();
             }
+            else if (userInput == "no")
+            {
+                Console.WriteLine("Thanks for playing.");
+            }
             else
             {
-                Console.WriteLine("Have a Nice Day.");
+                Console.WriteLine("Please enter 'Yes' or 'No'.");
+                PlayAgain();
             }
         }
+
     }
 }
