@@ -73,7 +73,7 @@ namespace LemonadeStand
         {
             for (int i = 0; i < noCustomers; i++)
             {
-                customer.potentialCustomer.Add(new Customer(random.Next(0,4)));
+                customer.potentialCustomer.Add(new Customer(random.Next(1,4)));
             }
         }
         

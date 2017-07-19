@@ -12,7 +12,6 @@ namespace LemonadeStand
         public Lemon lemon;
         public Sugar sugar;
         public IceCube iceCubes;
-        public Player playerOne;
 
         public Inventory()
         {
@@ -65,54 +64,22 @@ namespace LemonadeStand
 
         public void RemoveCups(Recipe recipe)
         {
-            try
-            {
-                cup.cups.RemoveRange(0, recipe.CupQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Cups available.");
-                playerOne.UseCups();
-            }
+            cup.cups.RemoveRange(0, recipe.CupQty);
         }
 
         public void RemoveLemons(Recipe recipe)
         {
-            try
-            {
-                lemon.lemons.RemoveRange(0, recipe.LemonQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Lemons available.");
-                playerOne.UseLemons();
-            }
+            lemon.lemons.RemoveRange(0, recipe.LemonQty);
         }
 
         public void RemoveSugar(Recipe recipe)
         {
-            try
-            {
-                sugar.sugar.RemoveRange(0, recipe.SugarQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Sugar available.");
-                playerOne.UseSugar();
-            }
+            sugar.sugar.RemoveRange(0, recipe.SugarQty);
         }
 
         public void RemoveIceCubes(Recipe recipe)
         {
-            try
-            {
-                iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Not enough Ice Cubes available.");
-                playerOne.UseIceCubes();
-            }
+            iceCubes.iceCubes.RemoveRange(0, recipe.IceCubesQty);
         }
     }
 }

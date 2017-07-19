@@ -103,15 +103,17 @@ namespace LemonadeStand
             UseSugar();
             UseIceCubes();
             lemonade.AddCupsOfLemonade(recipe);
+            lemonade.GetLemonadeType(recipe);
         }
 
         public void MakeLemonadeWithRecipe(Recipe recipe)
         {
             UseCups();
-            inventory.RemoveLemons(recipe);
-            inventory.RemoveSugar(recipe);
-            inventory.RemoveIceCubes(recipe);
+            VerifyLemonsQty();
+            VerifySugarQty();
+            VerifyIceCubesQty();
             lemonade.AddCupsOfLemonade(recipe);
+            lemonade.GetLemonadeType(recipe);
         }
 
         public void UseCups()
@@ -127,8 +129,20 @@ namespace LemonadeStand
                 UseCups();
                 return;
             }
+            VerifyCupsQty();
+        }
 
-            inventory.RemoveCups(recipe);
+        public void VerifyCupsQty()
+        {
+            if (recipe.CupQty > inventory.cup.cups.Count)
+            {
+                Console.WriteLine("Not enough Lemons available.");
+                UseCups();
+            }
+            else
+            {
+                inventory.RemoveCups(recipe);
+            }
         }
 
         public void UseLemons()
@@ -144,8 +158,20 @@ namespace LemonadeStand
                 UseLemons();
                 return;
             }
+            VerifyLemonsQty();
+        }
 
-            inventory.RemoveLemons(recipe);
+        public void VerifyLemonsQty()
+        {
+            if (recipe.LemonQty > inventory.lemon.lemons.Count)
+            {
+                Console.WriteLine("Not enough Lemons available.");
+                UseLemons();
+            }
+            else
+            {
+                inventory.RemoveLemons(recipe);
+            }
         }
 
         public void UseSugar()
@@ -161,8 +187,20 @@ namespace LemonadeStand
                 UseSugar();
                 return;
             }
+            VerifySugarQty();
+        }
 
-            inventory.RemoveSugar(recipe);
+        public void VerifySugarQty()
+        {
+            if (recipe.SugarQty > inventory.sugar.sugar.Count)
+            {
+                Console.WriteLine("Not enough Lemons available.");
+                UseSugar();
+            }
+            else
+            {
+                inventory.RemoveSugar(recipe);
+            }
         }
 
         public void UseIceCubes()
@@ -178,15 +216,19 @@ namespace LemonadeStand
                 UseIceCubes();
                 return;
             }
-
-            inventory.RemoveIceCubes(recipe);
+            VerifyIceCubesQty();
         }
 
-        public void GetCupsOfLemonade()
+        public void VerifyIceCubesQty()
         {
-            for (int i = 0; i < recipe.CupQty; i++)
+            if (recipe.IceCubesQty > inventory.iceCubes.iceCubes.Count)
             {
-                lemonade.cupsOfLemonade.Add(new Lemonade());
+                Console.WriteLine("Not enough Lemons available.");
+                UseIceCubes();
+            }
+            else
+            {
+                inventory.RemoveIceCubes(recipe);
             }
         }
 
@@ -205,188 +247,72 @@ namespace LemonadeStand
             }
         }
 
-        public int GetLemonadeType()
-        {
-            if (recipe.LemonQty == recipe.SugarQty)
-            {
-                lemonade.LemonadeType = 1;
-            }
-            else if (recipe.LemonQty > recipe.SugarQty)
-            {
-                lemonade.LemonadeType = 2;
-            }
-            else if (recipe.LemonQty < recipe.SugarQty)
-            {
-                lemonade.LemonadeType = 3;
-            }
-            return lemonade.LemonadeType;
-        }
-
         public void BuyLemonade(Day day, Random random)
         {
             int willBuy = 0;
 
             foreach (Customer buyingCustomer in day.customer.potentialCustomer)
             {
+                willBuy = random.Next(1, 11);
+
                 if (lemonade.cupsOfLemonade.Count != 0)
                 {
-                    if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 1))
+                    if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
                     {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 2)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
+                        day.customer.purchasingCustomer.Add(buyingCustomer);
+                        lemonade.cupsOfLemonade.RemoveAt(0);
                     }
-                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 1))
+                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice >= .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
                     {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 4)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 1))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 2)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 1))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 4)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 1))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 4)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 1))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 6)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 2))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 2)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 2))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 4)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 2))
-                    {
-                        willBuy = random.Next(0, 11);
                         if (willBuy > 3)
                         {
                             day.customer.purchasingCustomer.Add(buyingCustomer);
                             lemonade.cupsOfLemonade.RemoveAt(0);
                         }
                     }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 2))
+                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice < .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
                     {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 5)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 2))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 6)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 2))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 8)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 3))
-                    {
-                        willBuy = random.Next(0, 11);
                         if (willBuy > 2)
                         {
                             day.customer.purchasingCustomer.Add(buyingCustomer);
                             lemonade.cupsOfLemonade.RemoveAt(0);
                         }
                     }
-                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 3))
+                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice >= .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
                     {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 4)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 3))
-                    {
-                        willBuy = random.Next(0, 11);
                         if (willBuy > 3)
                         {
                             day.customer.purchasingCustomer.Add(buyingCustomer);
                             lemonade.cupsOfLemonade.RemoveAt(0);
                         }
                     }
-                    else if ((day.weather.temperature < 70) && (day.weather.temperature >= 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 3))
+                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice < .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
                     {
-                        willBuy = random.Next(0, 11);
+                        if (willBuy > 4)
+                        {
+                            day.customer.purchasingCustomer.Add(buyingCustomer);
+                            lemonade.cupsOfLemonade.RemoveAt(0);
+                        }
+                    }
+                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice >= .50m) && (lemonade.LemonadeType == buyingCustomer.lemonadeTypePreference))
+                    {
+                        if (willBuy > 6)
+                        {
+                            day.customer.purchasingCustomer.Add(buyingCustomer);
+                            lemonade.cupsOfLemonade.RemoveAt(0);
+                        }
+                    }
+                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .50m) && (recipe.IceCubesQty >= 6))
+                    {
                         if (willBuy > 5)
                         {
                             day.customer.purchasingCustomer.Add(buyingCustomer);
                             lemonade.cupsOfLemonade.RemoveAt(0);
                         }
                     }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice < .50m) && (buyingCustomer.lemonadeTypePreference == 3))
+                    else if ((day.weather.temperature >= 70) && (lemonade.LemonadePrice < .40m))
                     {
-                        willBuy = random.Next(0, 11);
                         if (willBuy > 5)
-                        {
-                            day.customer.purchasingCustomer.Add(buyingCustomer);
-                            lemonade.cupsOfLemonade.RemoveAt(0);
-                        }
-                    }
-                    else if ((day.weather.temperature < 40) && (lemonade.LemonadePrice >= .50m) && (buyingCustomer.lemonadeTypePreference == 3))
-                    {
-                        willBuy = random.Next(0, 11);
-                        if (willBuy > 7)
                         {
                             day.customer.purchasingCustomer.Add(buyingCustomer);
                             lemonade.cupsOfLemonade.RemoveAt(0);

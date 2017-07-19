@@ -35,7 +35,7 @@ namespace LemonadeStand
             UserInterface.GetRules();
             GetPlayer();
             StartGamePlay();
-            EndOfGameReport();           
+            EndGamePlayReport();           
             PlayAgain();
         }
 
@@ -62,7 +62,6 @@ namespace LemonadeStand
                 playerOne.MakeLemonade();
                 playerOne.lemonade.DisplayCupsOfLemonade();
                 playerOne.SetLemonadePrice();
-                playerOne.GetLemonadeType();
                 UserInterface.DisplayPotentialCustomers(day.customer);
                 playerOne.BuyLemonade(day, random);
                 Console.WriteLine("\n-----------------------------");
@@ -83,7 +82,7 @@ namespace LemonadeStand
             }
         }
 
-        public void EndOfGameReport()
+        public void EndGamePlayReport()
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("{0}, here's your {1} day game report:", playerOne.GetName(), gameDays.Count);

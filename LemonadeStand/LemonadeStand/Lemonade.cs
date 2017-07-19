@@ -27,7 +27,8 @@ namespace LemonadeStand
         public Lemonade()
         {
             cupsOfLemonade = new List<Lemonade>();
-            lemonadePrice = .05m;
+            lemonadePrice = .25m;
+            
         }
 
         public decimal GetPricePerCupLemonade()
@@ -45,6 +46,22 @@ namespace LemonadeStand
             for (int i = 0; i < recipe.CupQty; i++)
             {
                 cupsOfLemonade.Add(new Lemonade());
+            }
+        }
+
+        public void GetLemonadeType(Recipe recipe)
+        {
+            if (recipe.LemonQty == recipe.SugarQty)
+            {
+                LemonadeType = 1;
+            }
+            else if (recipe.LemonQty > recipe.SugarQty)
+            {
+                LemonadeType = 2;
+            }
+            else if (recipe.LemonQty < recipe.SugarQty)
+            {
+                LemonadeType = 3;
             }
         }
     }
